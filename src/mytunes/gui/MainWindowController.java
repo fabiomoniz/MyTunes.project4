@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
  * @author Fábio
  * @auther Nicolai
  * @author Emil Schütt
+ * @author Bastian
  */
 public class MainWindowController implements Initializable {
     
