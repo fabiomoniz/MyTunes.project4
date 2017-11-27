@@ -3,47 +3,53 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="764.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="mytunes.gui.MainWindowController">
+<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.MainWindowController">
    <children>
-      <TableView layoutX="30.0" layoutY="135.0" prefHeight="377.0" prefWidth="219.0">
+      <TableView fx:id="playList" layoutX="30.0" layoutY="135.0" prefHeight="377.0" prefWidth="219.0">
         <columns>
-          <TableColumn prefWidth="70.0" text="C1" />
-          <TableColumn prefWidth="77.0" text="C2" />
+          <TableColumn prefWidth="77.0" text="Songs" />
+          <TableColumn prefWidth="70.0" text="Name" />
+            <TableColumn prefWidth="75.0" text="Time" />
         </columns>
       </TableView>
-      <TableView layoutX="466.0" layoutY="135.0" prefHeight="377.0" prefWidth="282.0">
+      <TableView fx:id="songsList" layoutX="466.0" layoutY="135.0" prefHeight="377.0" prefWidth="339.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="109.0" text="Title" />
+          <TableColumn prefWidth="104.0" text="Aritst" />
+            <TableColumn prefWidth="78.0" text="Category" />
+            <TableColumn prefWidth="47.0" text="Time" />
         </columns>
       </TableView>
       <ListView layoutX="258.0" layoutY="135.0" prefHeight="377.0" prefWidth="149.0" />
-      <Button layoutX="39.0" layoutY="521.0" mnemonicParsing="false" text="New" />
-      <Button layoutX="87.0" layoutY="521.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="131.0" layoutY="521.0" mnemonicParsing="false" text="Delete" />
-      <Button layoutX="466.0" layoutY="521.0" mnemonicParsing="false" text="New" />
-      <Button layoutX="514.0" layoutY="521.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="558.0" layoutY="521.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="39.0" layoutY="521.0" mnemonicParsing="false" onAction="#playlistNew" text="New" />
+      <Button layoutX="87.0" layoutY="521.0" mnemonicParsing="false" onAction="#playListEdit" text="Edit" />
+      <Button layoutX="131.0" layoutY="521.0" mnemonicParsing="false" onAction="#playListDelete" text="Delete" />
+      <Button layoutX="466.0" layoutY="521.0" mnemonicParsing="false" onAction="#songListNew" text="New" />
+      <Button layoutX="514.0" layoutY="521.0" mnemonicParsing="false" onAction="#songListEdit" text="Edit" />
+      <Button layoutX="558.0" layoutY="521.0" mnemonicParsing="false" onAction="#songListDelete" text="Delete" />
       <Button layoutX="703.0" layoutY="521.0" mnemonicParsing="false" text="Close" />
       <Label layoutX="30.0" layoutY="112.0" text="Playlists" />
       <Label layoutX="258.0" layoutY="112.0" text="Songs on playlist" />
       <Label layoutX="466.0" layoutY="112.0" text="Songs" />
-      <TextField layoutX="601.0" layoutY="14.0" />
-      <Label layoutX="567.0" layoutY="18.0" text="Filter" />
+      <TextField layoutX="558.0" layoutY="14.0" promptText="Filter" />
+      <Label layoutX="531.0" layoutY="18.0" text="Filter" />
       <Button layoutX="258.0" layoutY="521.0" mnemonicParsing="false" text="Up" />
       <Button layoutX="300.0" layoutY="521.0" mnemonicParsing="false" text="Down" />
       <Button layoutX="357.0" layoutY="521.0" mnemonicParsing="false" text="Delete" />
       <Button layoutX="413.0" layoutY="135.0" mnemonicParsing="false" text="Insert" />
-      <Button layoutX="329.0" layoutY="64.0" mnemonicParsing="false" text="Play" />
-      <Button layoutX="287.0" layoutY="64.0" mnemonicParsing="false" text="Last" />
-      <Button layoutX="372.0" layoutY="64.0" mnemonicParsing="false" text="Next" />
+      <Button layoutX="329.0" layoutY="64.0" mnemonicParsing="false" onAction="#songPlay" text="Play" />
+      <Button layoutX="287.0" layoutY="64.0" mnemonicParsing="false" onAction="#songLast" text="Last" />
+      <Button layoutX="372.0" layoutY="64.0" mnemonicParsing="false" onAction="#songNext" text="Next" />
       <Label layoutX="283.0" layoutY="17.0" prefHeight="35.0" prefWidth="149.0" text="SongName + &quot;is Playing&quot;" />
       <ImageView fitHeight="102.0" fitWidth="119.0" layoutX="97.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="710.0" layoutY="14.0" mnemonicParsing="false" text="Search" />
+      <Slider layoutX="281.0" layoutY="95.0" onDragDetected="#SongVolumeDragDetected" />
    </children>
 </AnchorPane>
