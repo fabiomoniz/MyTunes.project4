@@ -1,0 +1,1 @@
+Add the sqljdbc42.jar file to your "MYTunes.project4" folder add then add it to the programs library
