@@ -23,3 +23,6 @@ hs_err_pid*
 /nbproject/private/
 /build/
 /dist/
+dist/Mytunes.html
+src/mytunes/gui/MainWindowController.java
+src/mytunes/gui/MainWindowController.java
