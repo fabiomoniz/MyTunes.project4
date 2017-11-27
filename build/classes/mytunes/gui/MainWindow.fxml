@@ -22,7 +22,7 @@
       <TableView fx:id="songsList" layoutX="466.0" layoutY="135.0" prefHeight="377.0" prefWidth="339.0">
         <columns>
           <TableColumn prefWidth="109.0" text="Title" />
-          <TableColumn prefWidth="104.0" text="Aritst" />
+          <TableColumn prefWidth="104.0" text="Artists" />
             <TableColumn prefWidth="78.0" text="Category" />
             <TableColumn prefWidth="47.0" text="Time" />
         </columns>
