@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import mytunes.BE.Song;
 
 /**
  *
@@ -29,7 +30,7 @@ public class MainWindowController implements Initializable {
     @FXML
     private TableView<?> playList;
     @FXML
-    private TableView<?> songsList;
+    private TableView<Song> songsList;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
