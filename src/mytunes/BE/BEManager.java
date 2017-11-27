@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mytunes.gui.BLL;
+package mytunes.BE;
 
 /**
  *
- * @author Emil Pc
+ * @author Fábio
  */
-public class bllManager {
+public class BEManager {
     
 }
