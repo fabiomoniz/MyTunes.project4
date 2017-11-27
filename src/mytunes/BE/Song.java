@@ -9,14 +9,14 @@ package mytunes.BE;
  *
  * @author Fábio
  */
-public class Song {
+public class Song {       
     
     private int id;
     private String title;
     private String artist;
     private String category;
     private float time;
-    private String filePath;           
+    private String filePath;
     
     public Song(int id , String title , String artist , String category , float time , String filePath ){
         this.id = id;
@@ -27,6 +27,48 @@ public class Song {
         this.filePath = filePath;
     }
     
-    
-    
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public float getTime() {
+        return time;
+    }
+
+    public void setTime(float time) {
+        this.time = time;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
 }
