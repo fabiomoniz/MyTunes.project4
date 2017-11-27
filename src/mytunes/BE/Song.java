@@ -18,7 +18,6 @@ public class Song {
     private float time;
     private String filePath;
     
-    //iuhj
     public Song(int id , String title , String artist , String category , float time , String filePath ){
         this.id = id;
         this.title = title;
@@ -27,12 +26,7 @@ public class Song {
         this.time = time;
         this.filePath = filePath;
     }
-
-    /**
-     * Get the value of id
-     *
-     * @return the value of id
-     */
+    
     public int getId() {
         return id;
     }
