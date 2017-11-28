@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import mytunes.BE.Song;
+import mytunes.BLL.BLLManager;
 
 /**
  *
@@ -27,6 +28,8 @@ import mytunes.BE.Song;
  */
 public class MainWindowController implements Initializable {
     
+    BLLManager bll = new BLLManager();
+    
     private Label label;
     @FXML
     private TableView<?> playList;
@@ -35,6 +38,7 @@ public class MainWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        bll.getAllSongs();
         // TODO
     }    
     
