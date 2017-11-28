@@ -8,8 +8,13 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="Mytunes.jar" size="10587" download="eager" />
     <jar href="lib/sqljdbc42.jar" size="891490" download="eager" />
+=======
+    <jar href="Mytunes.jar" size="8945" download="eager" />
+    <jar href="lib\sqljdbc42.jar" size="891490" download="eager" />
+>>>>>>> 97021218863fba09960ffad0a09dd1745fd84986
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Mytunes" >
     <param name="requiredFXVersion" value="8.0+"/>
