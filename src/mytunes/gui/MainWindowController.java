@@ -7,14 +7,20 @@ package mytunes.gui;
  */
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import mytunes.BE.Song;
 
 /**
@@ -36,9 +42,11 @@ public class MainWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    
+    SongModel model = new SongModel();
     @FXML
-    private void playlistNew(ActionEvent event) {
+    private void playlistNew(ActionEvent event) throws IOException {
+        model.openWindow("Playlist.fxml");
     }
 
     @FXML
@@ -50,7 +58,8 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    private void songListNew(ActionEvent event) {
+    private void songListNew(ActionEvent event) throws IOException {
+        model.openWindow("Songtable.fxml");
     }
 
     @FXML
