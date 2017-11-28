@@ -14,9 +14,11 @@ import java.sql.Connection;
  * @author jeppjleemoritzled
  */
 public class ConnectionManager {
+    
     private SQLServerDataSource ds = new SQLServerDataSource();
+    
     public ConnectionManager() {
-        ds.setDatabaseName("CS2017B_10_MYTUNES");
+        ds.setDatabaseName("CS2017_10_MYTUNES");
         ds.setUser("CS2017B_10_java");
         ds.setPassword("javajava");
         ds.setPortNumber(1433);

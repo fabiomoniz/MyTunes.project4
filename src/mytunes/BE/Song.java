@@ -5,70 +5,89 @@
  */
 package mytunes.BE;
 
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author Fábio
  */
-public class Song {       
-    
-    private int id;
-    private String title;
-    private String artist;
-    private String category;
-    private float time;
-    private String filePath;
-    
-    public Song(int id , String title , String artist , String category , float time , String filePath ){
-        this.id = id;
-        this.title = title;
-        this.artist = artist;
-        this.category = category;
-        this.time = time;
-        this.filePath = filePath;
-    }
-    
-    public int getId() {
-        return id;
-    }
+public class Song {   
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getArtist() {
-        return artist;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public float getTime() {
-        return time;
-    }
-
-    public void setTime(float time) {
-        this.time = time;
-    }
+    private final IntegerProperty id = new SimpleIntegerProperty();
+    private final StringProperty title = new SimpleStringProperty();
+    private final StringProperty category = new SimpleStringProperty();
+    private final FloatProperty time = new SimpleFloatProperty();
+    private final StringProperty filePath = new SimpleStringProperty();
 
     public String getFilePath() {
-        return filePath;
+        return filePath.get();
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFilePath(String value) {
+        filePath.set(value);
     }
+
+    public StringProperty filePathProperty() {
+        return filePath;
+    }
+    
+
+    public float getTime() {
+        return time.get();
+    }
+
+    public void setTime(float value) {
+        time.set(value);
+    }
+
+    public FloatProperty timeProperty() {
+        return time;
+    }
+    
+
+    public String getCategory() {
+        return category.get();
+    }
+
+    public void setCategory(String value) {
+        category.set(value);
+    }
+
+    public StringProperty categoryProperty() {
+        return category;
+    }
+    
+
+    public String getTitle() {
+        return title.get();
+    }
+
+    public void setTitle(String value) {
+        title.set(value);
+    }
+
+    public StringProperty titleProperty() {
+        return title;
+    }
+    
+    
+    public int getId() {
+        return id.get();
+    }
+
+    public void setId(int value) {
+        id.set(value);
+    }
+
+    public IntegerProperty idProperty() {
+        return id;
+    }
+    
+    
 
 }
