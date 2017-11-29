@@ -30,7 +30,7 @@ import mytunes.BLL.BLLManager;
  */
 public class MainWindowController implements Initializable {
     
-    BLLManager bll = new BLLManager();
+   // BLLManager bll = new BLLManager();
     SongModel model = new SongModel();
     
     private Label label;
@@ -39,14 +39,18 @@ public class MainWindowController implements Initializable {
     @FXML
     private TableView<Song> songsList;
     
-    /*private TableColumn<Song, String> columnTitle;
+    @FXML
+    private TableColumn<Song, String> columnTitle;
+    @FXML
     private TableColumn<Song, String> columnArtist;
+    @FXML
     private TableColumn<Song, String> columnCategory;
+    @FXML
     private TableColumn<Song, Float> columnTime;
-    */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         /*columnTitle.setCellValueFactory(
+        columnTitle.setCellValueFactory(
             new PropertyValueFactory("title"));
         columnArtist.setCellValueFactory(
             new PropertyValueFactory("artist"));
@@ -54,7 +58,7 @@ public class MainWindowController implements Initializable {
             new PropertyValueFactory("category"));
         columnTime.setCellValueFactory(
             new PropertyValueFactory("time"));
-        model.loadAll();*/
+        model.loadAll();
         // TODO
     }
     
