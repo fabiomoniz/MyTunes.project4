@@ -38,7 +38,8 @@ public class MainWindowController implements Initializable {
    
 
    // BLLManager bll = new BLLManager();
-
+    
+    SongModel model = new SongModel();
     
 
     private Label label;
@@ -46,7 +47,7 @@ public class MainWindowController implements Initializable {
     private TableView<?> playList;
     @FXML
     private TableView<Song> songsList;
-    SongModel model;
+
     
     @FXML
     private TableColumn<Song, String> columnTitle;
