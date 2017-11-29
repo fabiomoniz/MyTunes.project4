@@ -6,11 +6,16 @@
 package mytunes.gui;
 
 import java.io.IOException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mytunes.BLL.BLLManager;
+import java.util.List;
+import mytunes.BE.Song;
 
 /**
  *
@@ -32,5 +37,19 @@ public class SongModel {
         primaryStage.setScene(scene);
         primaryStage.showAndWait();
     }
+    private BLLManager bllmanager = new BLLManager();
+    
+    private ObservableList<Song> sList
+            = FXCollections.observableArrayList();
+    
+    public ObservableList<Song> getSongList() {
+        return sList;
+    }
+    
+    public void loadAll() {
+        sList.clear();
+        sList.addAll(bllmanager.getAllSongs());
+    }
 }
+
 
