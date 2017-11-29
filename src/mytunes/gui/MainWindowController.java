@@ -14,7 +14,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import mytunes.BE.Song;
 import mytunes.BLL.BLLManager;
@@ -36,8 +38,21 @@ public class MainWindowController implements Initializable {
     @FXML
     private TableView<Song> songsList;
     
+    private TableColumn<Song, String> columnTitle;
+    private TableColumn<Song, String> columnArtist;
+    private TableColumn<Song, String> columnCategory;
+    private TableColumn<Song, Float> columnTime;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         columnTitle.setCellValueFactory(
+            new PropertyValueFactory("title"));
+        columnArtist.setCellValueFactory(
+            new PropertyValueFactory("artist"));
+        columnCategory.setCellValueFactory(
+            new PropertyValueFactory("category"));
+        columnTime.setCellValueFactory(
+            new PropertyValueFactory("time"));
         bll.getAllSongs();
         // TODO
     }    
