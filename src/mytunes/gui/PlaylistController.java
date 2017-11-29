@@ -9,7 +9,11 @@ package mytunes.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -18,6 +22,9 @@ import javafx.fxml.Initializable;
  */
 public class PlaylistController implements Initializable {
 
+    @FXML
+    private TextField txtfieldname;
+
     /**
      * Initializes the controller class.
      */
@@ -25,5 +32,14 @@ public class PlaylistController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void buttonsave(ActionEvent event) {
+    }
+
+    @FXML
+    private void butotncancel(ActionEvent event) {
+        ((Node)event.getSource()).getScene().getWindow().hide();
+    }
     
 }
