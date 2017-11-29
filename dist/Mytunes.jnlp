@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="Mytunes.jar" size="11246" download="eager" />
+=======
+    <jar href="Mytunes.jar" size="11803" download="eager" />
+>>>>>>> 2ef0c0019464d90badd3c5fb002ce6f21940a2b9
     <jar href="lib\sqljdbc42.jar" size="891490" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Mytunes" >

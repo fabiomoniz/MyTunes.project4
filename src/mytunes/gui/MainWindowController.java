@@ -10,6 +10,7 @@ package mytunes.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,8 +31,14 @@ import mytunes.BLL.BLLManager;
  */
 public class MainWindowController implements Initializable {
     
+<<<<<<< HEAD
     BLLManager bll = new BLLManager();
    
+=======
+   // BLLManager bll = new BLLManager();
+    SongModel model = new SongModel();
+    
+>>>>>>> 2ef0c0019464d90badd3c5fb002ce6f21940a2b9
     private Label label;
     @FXML
     private TableView<?> playList;
@@ -39,9 +46,13 @@ public class MainWindowController implements Initializable {
     private TableView<Song> songsList;
     SongModel model;
     
+    @FXML
     private TableColumn<Song, String> columnTitle;
+    @FXML
     private TableColumn<Song, String> columnArtist;
+    @FXML
     private TableColumn<Song, String> columnCategory;
+    @FXML
     private TableColumn<Song, Float> columnTime;
     
     @Override
@@ -54,11 +65,22 @@ public class MainWindowController implements Initializable {
             new PropertyValueFactory("category"));
         columnTime.setCellValueFactory(
             new PropertyValueFactory("time"));
+<<<<<<< HEAD
         model.getSongList();
         
     }    
     
+=======
+        model.loadAll();
+        // TODO
+    }
+>>>>>>> 2ef0c0019464d90badd3c5fb002ce6f21940a2b9
     
+    public void setModel(SongModel model)
+    {
+    this.model = model;
+    songsList.setItems(model.getSongList());
+    }
     
     // opens the Playlist window when clicking new playlist
     @FXML
@@ -103,5 +125,9 @@ public class MainWindowController implements Initializable {
     @FXML
     private void SongVolumeDragDetected(MouseEvent event) {
     }
-    
+
+    @FXML
+    private void buttonclose(ActionEvent event) {
+        Platform.exit();
+    }
 }
