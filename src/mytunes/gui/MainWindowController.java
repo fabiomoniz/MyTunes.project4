@@ -31,6 +31,7 @@ import mytunes.BLL.BLLManager;
 public class MainWindowController implements Initializable {
     
     BLLManager bll = new BLLManager();
+    SongModel model = new SongModel();
     
     private Label label;
     @FXML
@@ -38,14 +39,14 @@ public class MainWindowController implements Initializable {
     @FXML
     private TableView<Song> songsList;
     
-    private TableColumn<Song, String> columnTitle;
+    /*private TableColumn<Song, String> columnTitle;
     private TableColumn<Song, String> columnArtist;
     private TableColumn<Song, String> columnCategory;
     private TableColumn<Song, Float> columnTime;
-    
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         columnTitle.setCellValueFactory(
+         /*columnTitle.setCellValueFactory(
             new PropertyValueFactory("title"));
         columnArtist.setCellValueFactory(
             new PropertyValueFactory("artist"));
@@ -53,12 +54,15 @@ public class MainWindowController implements Initializable {
             new PropertyValueFactory("category"));
         columnTime.setCellValueFactory(
             new PropertyValueFactory("time"));
-        bll.getAllSongs();
+        model.loadAll();*/
         // TODO
-    }    
+    }
     
-    SongModel model = new SongModel();
-    
+    public void setModel(SongModel model)
+    {
+    this.model = model;
+    songsList.setItems(model.getSongList());
+    }
     
     // opens the Playlist window when clicking new playlist
     @FXML
