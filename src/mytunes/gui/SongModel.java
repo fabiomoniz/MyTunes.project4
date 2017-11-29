@@ -14,9 +14,6 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import mytunes.BLL.BLLManager;
-import java.util.List;
-import mytunes.BE.Song;
 
 import mytunes.BE.Song;
 import mytunes.BLL.BLLManager;
@@ -33,6 +30,7 @@ public class SongModel {
     
     public ObservableList<Song> getSongList()
     {
+        sList.addAll(bllManager.getAllSongs());
         return sList;
     }
     
@@ -56,7 +54,6 @@ public class SongModel {
         primaryStage.setScene(scene);
         primaryStage.showAndWait();
     }
-    private BLLManager bllmanager = new BLLManager();
     
 }
 
