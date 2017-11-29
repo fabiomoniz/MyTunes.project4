@@ -21,10 +21,10 @@
       </TableView>
       <TableView fx:id="songsList" layoutX="466.0" layoutY="135.0" prefHeight="377.0" prefWidth="339.0">
         <columns>
-          <TableColumn prefWidth="109.0" text="Title" />
-          <TableColumn prefWidth="104.0" text="Artist" />
-            <TableColumn prefWidth="78.0" text="Category" />
-            <TableColumn prefWidth="47.0" text="Time" />
+          <TableColumn id="columnTitle" fx:id="columnTitle" prefWidth="109.0" text="Title" />
+          <TableColumn id="columnArtist" fx:id="columnArtist" prefWidth="104.0" text="Artist" />
+            <TableColumn id="columnCategory" fx:id="columnCategory" prefWidth="78.0" text="Category" />
+            <TableColumn id="columnTime" fx:id="columnTime" prefWidth="47.0" text="Time" />
         </columns>
       </TableView>
       <ListView layoutX="258.0" layoutY="135.0" prefHeight="377.0" prefWidth="149.0" />

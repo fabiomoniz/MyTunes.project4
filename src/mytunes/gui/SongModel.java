@@ -13,14 +13,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-<<<<<<< HEAD
+
 import mytunes.BLL.BLLManager;
 import java.util.List;
 import mytunes.BE.Song;
-=======
+
 import mytunes.BE.Song;
 import mytunes.BLL.BLLManager;
->>>>>>> 2ef0c0019464d90badd3c5fb002ce6f21940a2b9
 
 /**
  *
@@ -59,17 +58,7 @@ public class SongModel {
     }
     private BLLManager bllmanager = new BLLManager();
     
-    private ObservableList<Song> sList
-            = FXCollections.observableArrayList();
-    
-    public ObservableList<Song> getSongList() {
-        return sList;
-    }
-    
-    public void loadAll() {
-        sList.clear();
-        sList.addAll(bllmanager.getAllSongs());
-    }
 }
+
 
 
