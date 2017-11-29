@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  */
 public class SongModel {
     
-    
+    // method to set the stage/opening a window on the view. Is called in the MainWindowController
     public void openWindow(String selectedWindow) throws IOException
     {
         Stage primaryStage = new Stage();

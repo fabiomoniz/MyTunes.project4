@@ -43,6 +43,9 @@ public class MainWindowController implements Initializable {
     }    
     
     SongModel model = new SongModel();
+    
+    
+    // opens the Playlist window when clicking new playlist
     @FXML
     private void playlistNew(ActionEvent event) throws IOException {
         model.openWindow("Playlist.fxml");
@@ -56,6 +59,7 @@ public class MainWindowController implements Initializable {
     private void playListDelete(ActionEvent event) {
     }
 
+    // opens Songtable window when clicking new song
     @FXML
     private void songListNew(ActionEvent event) throws IOException {
         model.openWindow("Songtable.fxml");
