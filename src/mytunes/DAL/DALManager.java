@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mytunes.BE.Playlist;
 import mytunes.BE.Song;
 
 /**
@@ -50,6 +51,7 @@ public class DALManager {
         }
         return allSongs;
     }
+<<<<<<< HEAD
     
     public void add(Song song) {
         try (Connection con = cm.getConnection()) {
@@ -74,12 +76,31 @@ public class DALManager {
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 song.setId(rs.getInt(1));
+=======
+    public List<Playlist> getAllPlaylists() {
+        List<Playlist> allPlaylists
+                = new ArrayList();
+
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement stmt
+                    = con.prepareStatement("SELECT * FROM PlayList");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Playlist playlist = new Playlist();
+                playlist.setId(rs.getInt("id"));
+                playlist.setSongs(rs.getInt("songs"));
+                playlist.setName(rs.getString("name"));
+                playlist.setTime(rs.getFloat("time"));
+
+                allPlaylists.add(playlist);
+>>>>>>> b70d2fc34fb2e063d703cf18743103c04f72b6f6
             }
         }
         catch (SQLException ex) {
             Logger.getLogger(DALManager.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
+<<<<<<< HEAD
     }
     
     public void remove(Song selectedSong) {
@@ -95,5 +116,8 @@ public class DALManager {
             Logger.getLogger(DALManager.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
+=======
+        return allPlaylists;
+>>>>>>> b70d2fc34fb2e063d703cf18743103c04f72b6f6
     }
 }
