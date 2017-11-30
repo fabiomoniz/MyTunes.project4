@@ -28,13 +28,16 @@ public class SongModel {
     private final ObservableList<Song> sList
             = FXCollections.observableArrayList(bllManager.getAllSongs());
     
-    
-    //returns the observable list that is called in the controller
     public ObservableList<Song> getSongList()
     {
         return sList;
     }
     
+    public void loadAll()
+    {
+        sList.clear();
+        sList.addAll(bllManager.getAllSongs());
+    }
     
     public void add(Song song) {
         bllManager.add(song);
