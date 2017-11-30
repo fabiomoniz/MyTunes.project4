@@ -7,13 +7,18 @@ package mytunes.gui;
  */
 
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import mytunes.BE.Song;
+import mytunes.BLL.BLLManager;
 
 /**
  * FXML Controller class
@@ -30,21 +35,47 @@ public class SongtableController implements Initializable {
     private TextField txtfieldtime;
     @FXML
     private TextField txtfieldfile;
+    @FXML
+    private ComboBox<String> comboCategory;
 
+    BLLManager bll = new BLLManager();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        comboCategory.getItems().setAll("Classical","Jazz","Modern","Pop","R&B","ReligiousRock");
         // TODO
     }    
 
     @FXML
     private void buttonchoose(ActionEvent event) {
+        String StringPath = null;
+        
+        final FileChooser fileChooser = new FileChooser();
+        
+        File filePath = fileChooser.showOpenDialog(null);
+        if (filePath != null)
+        {
+            StringPath = filePath.getAbsolutePath();
+        }
+        
+        txtfieldfile.setText(StringPath);
     }
 
     @FXML
     private void buttonsave(ActionEvent event) {
+        Song song = new Song();
+        
+        song.setTitle(txtfieldtitle.getText());
+        song.setArtist(txtfieldartist.getText());
+        song.setCategory(comboCategory.getPromptText());
+        song.setTime(Float.parseFloat(txtfieldtime.getText()));
+        song.setFilePath(txtfieldfile.getText());
+        
+        bll.addSongsList(song);
+
+        ((Node)event.getSource()).getScene().getWindow().hide();
     }
 
     @FXML
