@@ -35,6 +35,7 @@ public class DALManager {
                 Song song = new Song();
                 song.setId(rs.getInt("id"));
                 song.setTitle(rs.getString("title"));
+                song.setArtist(rs.getString("artist"));
                 song.setCategory(rs.getString("category"));
                 song.setTime(rs.getFloat("time"));
                 song.setFilePath(rs.getString("filePath"));

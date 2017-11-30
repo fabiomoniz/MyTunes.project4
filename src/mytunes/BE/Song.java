@@ -19,10 +19,24 @@ import javafx.beans.property.StringProperty;
 public class Song {   
 
     private final IntegerProperty id = new SimpleIntegerProperty();
-    private final StringProperty title = new SimpleStringProperty();
+    private final StringProperty title = new SimpleStringProperty();    
     private final StringProperty category = new SimpleStringProperty();
     private final FloatProperty time = new SimpleFloatProperty();
     private final StringProperty filePath = new SimpleStringProperty();
+    private final StringProperty artist = new SimpleStringProperty();
+
+    public String getArtist() {
+        return artist.get();
+    }
+
+    public void setArtist(String value) {
+        artist.set(value);
+    }
+
+    public StringProperty artistProperty() {
+        return artist;
+    }
+    
 
     public String getFilePath() {
         return filePath.get();
