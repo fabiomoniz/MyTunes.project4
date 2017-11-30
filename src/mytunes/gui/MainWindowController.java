@@ -9,6 +9,7 @@ package mytunes.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.ObservableArray;
@@ -69,15 +70,14 @@ public class MainWindowController implements Initializable {
         columnTime.setCellValueFactory(
             new PropertyValueFactory("time"));
         
-       // songsList.setItems(model.getSongList());
+        songsList.setItems(model.getSongList());
     }
 
     
-    public void setModel(SongModel model)
+    /*public void setModel(SongModel model)
     {
     this.model = model;
-    songsList.setItems(model.getSongList());
-    }
+    }*/
     
     // opens the Playlist window when clicking new playlist
     @FXML

@@ -25,12 +25,11 @@ import mytunes.BLL.BLLManager;
 public class SongModel {
     private BLLManager bllManager = new BLLManager();
     
-    private ObservableList<Song> sList
-            = FXCollections.observableArrayList();
+    private final ObservableList<Song> sList
+            = FXCollections.observableArrayList(bllManager.getAllSongs());
     
     public ObservableList<Song> getSongList()
     {
-        sList.addAll(bllManager.getAllSongs());
         return sList;
     }
     
