@@ -28,16 +28,13 @@ public class SongModel {
     private final ObservableList<Song> sList
             = FXCollections.observableArrayList(bllManager.getAllSongs());
     
+    
+    //returns the observable list that is called in the controller
     public ObservableList<Song> getSongList()
     {
         return sList;
     }
     
-    public void loadAll()
-    {
-        sList.clear();
-        sList.addAll(bllManager.getAllSongs());
-    }
     
     // method to set the stage/opening a window on the view. Is called in the MainWindowController
     public void openWindow(String selectedWindow) throws IOException
