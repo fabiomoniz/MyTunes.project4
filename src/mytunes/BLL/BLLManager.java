@@ -27,12 +27,23 @@ public class BLLManager {
     }
     
     public void addSongsList(Song song) {
+        DAL.add(song);
         songs.add(song);
     }
+    
+    public void add(Song song)
+    {
+        DAL.add(song);
+    }
+    
     
     public ObservableList<Song> getSongList()
     {
         return songs;
+    }
+    
+    public void remove(Song selectedSong) {
+        DAL.remove(selectedSong);
     }
 }
 

@@ -39,6 +39,7 @@ public class SongtableController implements Initializable {
     private ComboBox<String> comboCategory;
 
     BLLManager bll = new BLLManager();
+    SongModel model;
     /**
      * Initializes the controller class.
      */
@@ -69,13 +70,15 @@ public class SongtableController implements Initializable {
         
         song.setTitle(txtfieldtitle.getText());
         song.setArtist(txtfieldartist.getText());
-        song.setCategory(comboCategory.getPromptText());
+        song.setCategory(comboCategory.getValue());
         song.setTime(Float.parseFloat(txtfieldtime.getText()));
         song.setFilePath(txtfieldfile.getText());
         
-        bll.addSongsList(song);
-
+        model.add(song);
+        
         ((Node)event.getSource()).getScene().getWindow().hide();
+        
+        model.loadAll();
     }
 
     @FXML
@@ -85,6 +88,10 @@ public class SongtableController implements Initializable {
 
     @FXML
     private void musiccategory(ActionEvent event) {
+    }
+
+    public void setModel(SongModel model) {
+        this.model=model;
     }
     
 }

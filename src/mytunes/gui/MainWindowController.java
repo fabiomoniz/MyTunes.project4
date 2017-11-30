@@ -16,12 +16,17 @@ import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import mytunes.BE.Song;
 import mytunes.BLL.BLLManager;
 
@@ -36,9 +41,6 @@ public class MainWindowController implements Initializable {
     
 
     BLLManager bll = new BLLManager();
-   
-
-   // BLLManager bll = new BLLManager();
     
     SongModel model = new SongModel();
     
@@ -72,17 +74,11 @@ public class MainWindowController implements Initializable {
         
         songsList.setItems(model.getSongList());
     }
-
     
-    /*public void setModel(SongModel model)
-    {
-    this.model = model;
-    }*/
-    
-    // opens the Playlist window when clicking new playlist
+    // opens the Playlist window when clicking new playlistp
     @FXML
     private void playlistNew(ActionEvent event) throws IOException {
-        model.openWindow("Playlist.fxml");
+        
     }
 
     @FXML
@@ -91,12 +87,26 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void playListDelete(ActionEvent event) {
+        Song selectedSong
+                = songsList.getSelectionModel().getSelectedItem();
+
+        bll.remove(selectedSong);
     }
 
     // opens Songtable window when clicking new song
     @FXML
     private void songListNew(ActionEvent event) throws IOException {
-        model.openWindow("Songtable.fxml");
+        Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("Songtable.fxml"));
+        
+        Parent root = fxLoader.load();
+        SongtableController stc = fxLoader.getController();
+        stc.setModel(model);
+        
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.showAndWait();
     }
 
     @FXML

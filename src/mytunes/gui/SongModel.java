@@ -39,20 +39,17 @@ public class SongModel {
         sList.addAll(bllManager.getAllSongs());
     }
     
-    // method to set the stage/opening a window on the view. Is called in the MainWindowController
-    public void openWindow(String selectedWindow) throws IOException
-    {
-        Stage primaryStage = new Stage();
-        primaryStage.initModality(Modality.WINDOW_MODAL);
-        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource(selectedWindow));
-        
-        Parent root = fxLoader.load();
-      
-        
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.showAndWait();
+    public void add(Song song) {
+        bllManager.add(song);
+        sList.add(song);
     }
+    
+    public void remove(Song selectedSong)
+    {
+        sList.remove(selectedSong);        
+    }
+    
+    // method to set the stage/opening a window on the view. Is called in the MainWindowController
     
 }
 
