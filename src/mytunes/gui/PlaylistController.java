@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import mytunes.BE.PlayList;
 
 /**
  * FXML Controller class
@@ -22,6 +23,8 @@ import javafx.scene.control.TextField;
  */
 public class PlaylistController implements Initializable {
 
+    SongModel model;
+    
     @FXML
     private TextField txtfieldname;
 
@@ -35,6 +38,15 @@ public class PlaylistController implements Initializable {
 
     @FXML
     private void buttonsave(ActionEvent event) {
+        PlayList pl = new PlayList();
+        
+        pl.setNumberSongs(0);
+        pl.setPlayListnName(txtfieldname.getText());
+        pl.setTotalTime(0);
+        
+        model.add(pl);
+        
+        ((Node)event.getSource()).getScene().getWindow().hide();
     }
 
     @FXML
@@ -42,4 +54,7 @@ public class PlaylistController implements Initializable {
         ((Node)event.getSource()).getScene().getWindow().hide();
     }
     
+    public void setModel(SongModel model) {
+        this.model = model;
+    }
 }

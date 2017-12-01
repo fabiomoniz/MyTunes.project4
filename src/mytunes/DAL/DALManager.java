@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mytunes.BE.PlayList;
 import mytunes.BE.Song;
 
 /**
@@ -51,7 +52,32 @@ public class DALManager {
         return allSongs;
     }
     
-    public void add(Song song) {
+    public List<PlayList> getAllPlayList() {
+        List<PlayList> allPlayLists
+                = new ArrayList();
+
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement stmt
+                    = con.prepareStatement("SELECT * FROM PlayList");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                PlayList playList = new PlayList();
+                playList.setId(rs.getInt("id"));
+                playList.setNumberSongs(rs.getInt("numberSongs"));
+                playList.setPlayListnName(rs.getString("playListName"));
+                playList.setTotalTime(rs.getFloat("totalTime"));
+
+                allPlayLists.add(playList);
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DALManager.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+        return allPlayLists;
+    }
+    
+    public void addSong(Song song) {
         try (Connection con = cm.getConnection()) {
             String sql
                     = "INSERT INTO SongTable"
@@ -82,6 +108,35 @@ public class DALManager {
         }
     }
     
+    public void addPlayList(PlayList playList) {
+        try (Connection con = cm.getConnection()) {
+            String sql
+                    = "INSERT INTO PlayList"
+                    + "(songs, name, time) "
+                    + "VALUES(?,?,?)";
+            PreparedStatement pstmt
+                    = con.prepareStatement(
+                            sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, playList.getNumberSongs());
+            pstmt.setString(2, playList.getPlayListnName());
+            pstmt.setFloat(3, playList.getTotalTime());
+
+            int affected = pstmt.executeUpdate();
+            if (affected<1)
+                throw new SQLException("Prisoner could not be added");
+
+            // Get database generated id
+            ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                playList.setId(rs.getInt(1));
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DALManager.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+    }
+    
     public void remove(Song selectedSong) {
         try (Connection con = cm.getConnection()) {
             String sql
@@ -96,4 +151,5 @@ public class DALManager {
                     Level.SEVERE, null, ex);
         }
     }
+    
 }

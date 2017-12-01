@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mytunes.BE.PlayList;
 import mytunes.BE.Song;
 import mytunes.DAL.DALManager;
 
@@ -19,6 +20,7 @@ import mytunes.DAL.DALManager;
 public class BLLManager {
     
     private ObservableList<Song> songs = FXCollections.observableArrayList(new ArrayList<>());
+    private ObservableList<PlayList> playLists = FXCollections.observableArrayList(new ArrayList<>());
     
     DALManager DAL = new DALManager();
     
@@ -27,15 +29,22 @@ public class BLLManager {
     }
     
     public void addSongsList(Song song) {
-        DAL.add(song);
+        DAL.addSong(song);
         songs.add(song);
+    }
+    
+    public List<PlayList> getAllPlayLists(){
+        return DAL.getAllPlayList();
     }
     
     public void add(Song song)
     {
-        DAL.add(song);
+        DAL.addSong(song);
     }
     
+    public void add(PlayList playList) {
+        DAL.addPlayList(playList);
+    }
     
     public ObservableList<Song> getSongList()
     {
@@ -45,5 +54,7 @@ public class BLLManager {
     public void remove(Song selectedSong) {
         DAL.remove(selectedSong);
     }
+
+    
 }
 

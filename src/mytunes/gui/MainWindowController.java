@@ -27,6 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mytunes.BE.PlayList;
 import mytunes.BE.Song;
 import mytunes.BLL.BLLManager;
 
@@ -47,7 +48,7 @@ public class MainWindowController implements Initializable {
 
     private Label label;
     @FXML
-    private TableView<?> playList;
+    private TableView<PlayList> playList;
     @FXML
     private TableView<Song> songsList;
 
@@ -60,6 +61,12 @@ public class MainWindowController implements Initializable {
     private TableColumn<Song, String> columnCategory;
     @FXML
     private TableColumn<Song, Float> columnTime;
+    @FXML
+    private TableColumn<PlayList, Integer> columnNumberSongs;
+    @FXML
+    private TableColumn<PlayList, String> columnPlayListName;
+    @FXML
+    private TableColumn<PlayList, Float> columnTotalTime;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,12 +80,32 @@ public class MainWindowController implements Initializable {
             new PropertyValueFactory("time"));
         
         songsList.setItems(model.getSongList());
+        
+        columnNumberSongs.setCellValueFactory(
+            new PropertyValueFactory("numberSongs"));
+        columnPlayListName.setCellValueFactory(
+            new PropertyValueFactory("playListName"));
+        columnTotalTime.setCellValueFactory(
+            new PropertyValueFactory("totalTime"));
+        
+        playList.setItems(model.getPlayList());
+        
     }
     
     // opens the Playlist window when clicking new playlistp
     @FXML
     private void playlistNew(ActionEvent event) throws IOException {
+        Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("Playlist.fxml"));
         
+        Parent root = fxLoader.load();
+        PlaylistController stc = fxLoader.getController();
+        stc.setModel(model);
+        
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.showAndWait();
     }
 
     @FXML
@@ -87,10 +114,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void playListDelete(ActionEvent event) {
-        Song selectedSong
-                = songsList.getSelectionModel().getSelectedItem();
-
-        bll.remove(selectedSong);
+        
     }
 
     // opens Songtable window when clicking new song
@@ -115,7 +139,12 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void songListDelete(ActionEvent event) {
+        Song selectedSong
+                = songsList.getSelectionModel().getSelectedItem();
+
+        model.remove(selectedSong);
     }
+    
 
     @FXML
     private void songPlay(ActionEvent event) {

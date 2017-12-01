@@ -77,8 +77,6 @@ public class SongtableController implements Initializable {
         model.add(song);
         
         ((Node)event.getSource()).getScene().getWindow().hide();
-        
-        model.loadAll();
     }
 
     @FXML
@@ -91,7 +89,7 @@ public class SongtableController implements Initializable {
     }
 
     public void setModel(SongModel model) {
-        this.model=model;
+        this.model = model;
     }
     
 }

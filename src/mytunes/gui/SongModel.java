@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mytunes.BE.PlayList;
 
 
 import mytunes.BE.Song;
@@ -27,10 +28,17 @@ public class SongModel {
     
     private final ObservableList<Song> sList
             = FXCollections.observableArrayList(bllManager.getAllSongs());
+    private final ObservableList<PlayList> pList
+            = FXCollections.observableArrayList(bllManager.getAllPlayLists());
     
     public ObservableList<Song> getSongList()
     {
         return sList;
+    }
+    
+    public ObservableList<PlayList> getPlayList() 
+    {
+        return pList;
     }
     
     public void loadAll()
@@ -44,12 +52,20 @@ public class SongModel {
         sList.add(song);
     }
     
+    public void add(PlayList playList){
+        bllManager.add(playList);
+        pList.add(playList);
+    }
+    
     public void remove(Song selectedSong)
     {
+        bllManager.remove(selectedSong);
         sList.remove(selectedSong);        
     }
     
     // method to set the stage/opening a window on the view. Is called in the MainWindowController
+
+    
     
 }
 
