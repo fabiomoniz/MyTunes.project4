@@ -46,6 +46,7 @@ public class SongModel {
     
     public void remove(Song selectedSong)
     {
+        bllManager.remove(selectedSong);
         sList.remove(selectedSong);        
     }
     
