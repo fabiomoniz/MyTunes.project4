@@ -63,9 +63,7 @@ public class DALManager {
             while (rs.next()) {
                 PlayList playList = new PlayList();
                 playList.setId(rs.getInt("id"));
-                playList.setNumberSongs(rs.getInt("songs"));
                 playList.setPlayListnName(rs.getString("name"));
-                playList.setTotalTime(rs.getFloat("time"));
 
                 allPlayLists.add(playList);
             }
@@ -112,14 +110,12 @@ public class DALManager {
         try (Connection con = cm.getConnection()) {
             String sql
                     = "INSERT INTO PlayList"
-                    + "(songs, name, time) "
-                    + "VALUES(?,?,?)";
+                    + "(name) "
+                    + "VALUES(?)";
             PreparedStatement pstmt
                     = con.prepareStatement(
                             sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, playList.getNumberSongs());
             pstmt.setString(2, playList.getPlayListnName());
-            pstmt.setFloat(3, playList.getTotalTime());
 
             int affected = pstmt.executeUpdate();
             if (affected<1)

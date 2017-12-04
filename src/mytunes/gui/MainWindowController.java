@@ -43,7 +43,7 @@ public class MainWindowController implements Initializable {
     
 
     BLLManager bll = new BLLManager();
-    PlayList pl = new PlayList();
+
     SongModel model = new SongModel();
     
 
@@ -183,6 +183,14 @@ public class MainWindowController implements Initializable {
         
         model.addSongToPlayList(selectedSong , selectedPlayList);
         
-        listview.getItems().setAll(pl.getAllSongNamesFromPlayList());
+        listview.setItems(selectedPlayList.getPlayListSongs());
+    }
+
+    @FXML
+    private void updateList(MouseEvent event) {
+        PlayList selectedPlayList
+            = playList.getSelectionModel().getSelectedItem();
+        
+        System.out.println("fuck");
     }
 }

@@ -6,6 +6,7 @@
 package mytunes.BE;
 
 import java.util.ArrayList;
+import java.util.List;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
@@ -22,19 +23,16 @@ import javafx.collections.ObservableList;
  */
 public class PlayList {
 
-    
-    private final IntegerProperty numberSongs = new SimpleIntegerProperty();
+
     private final StringProperty playListnName = new SimpleStringProperty();
-    private final FloatProperty totalTime = new SimpleFloatProperty();
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final ListProperty<Song> playListSongs = new SimpleListProperty<>();
-
     
     public ObservableList getPlayListSongs() {
         return playListSongs.get();
     }
 
-    public void setPlayListSongs(ObservableList value) { //not sure we need this method...
+    public void setPlayListSongs(ObservableList value) { 
         playListSongs.set(value);
     }
 
@@ -55,21 +53,6 @@ public class PlayList {
         return id;
     }
     
-
-    public float getTotalTime() {
-        return totalTime.get();
-    }
-
-    public void setTotalTime(float value) {
-        totalTime.set(value);
-    }
-
-    public FloatProperty totalTimeProperty() {
-        return totalTime;
-    }
-    
-    
-
     public String getPlayListnName() {
         return playListnName.get();
     }
@@ -82,24 +65,14 @@ public class PlayList {
         return playListnName;
     }
     
-
-    public int getNumberSongs() {
-        return numberSongs.get();
+    public ObservableList<Song> getAllSongNamesFromPlayList(){
+        return playListSongs.get();
     }
 
-    public void setNumberSongs(int value) {
-        numberSongs.set(value);
-    }
-
-    public IntegerProperty numberSongsProperty() {
-        return numberSongs;
+    @Override
+    public String toString() {
+        return "PlayList{" + "playListSongs=" + playListSongs + '}';
     }
     
-    public String getAllSongNamesFromPlayList(){
-        for (Song playListSong : playListSongs) {
-            return playListSong.getTitle();
-        }
-        return null;
-        
-    }
+    
 }

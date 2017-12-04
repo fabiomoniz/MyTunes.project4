@@ -40,9 +40,7 @@ public class PlaylistController implements Initializable {
     private void buttonsave(ActionEvent event) {
         PlayList pl = new PlayList();
         
-        pl.setNumberSongs(0);
         pl.setPlayListnName(txtfieldname.getText());
-        pl.setTotalTime(0);
         
         model.add(pl);
         

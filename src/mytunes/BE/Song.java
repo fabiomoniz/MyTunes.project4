@@ -101,6 +101,11 @@ public class Song {
     public IntegerProperty idProperty() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return getTitle() ;
+    }
     
     
 

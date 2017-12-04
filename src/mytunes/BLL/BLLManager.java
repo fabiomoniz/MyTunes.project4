@@ -21,6 +21,7 @@ public class BLLManager {
     
     private ObservableList<Song> songs = FXCollections.observableArrayList(new ArrayList<>());
     private ObservableList<PlayList> playLists = FXCollections.observableArrayList(new ArrayList<>());
+    private ObservableList<Song> songsInPlayList = FXCollections.observableArrayList(new ArrayList<>());
     
     DALManager DAL = new DALManager();
     
@@ -67,7 +68,8 @@ public class BLLManager {
     }
 
     public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) {
-        selectedPlayList.getPlayListSongs().add(selectedSong);
+        songsInPlayList.add(selectedSong);
+        selectedPlayList.setPlayListSongs(songsInPlayList);
     }
 
 }
