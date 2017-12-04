@@ -63,9 +63,9 @@ public class DALManager {
             while (rs.next()) {
                 PlayList playList = new PlayList();
                 playList.setId(rs.getInt("id"));
-                playList.setNumberSongs(rs.getInt("numberSongs"));
-                playList.setPlayListnName(rs.getString("playListName"));
-                playList.setTotalTime(rs.getFloat("totalTime"));
+                playList.setNumberSongs(rs.getInt("songs"));
+                playList.setPlayListnName(rs.getString("name"));
+                playList.setTotalTime(rs.getFloat("time"));
 
                 allPlayLists.add(playList);
             }
@@ -94,7 +94,7 @@ public class DALManager {
 
             int affected = pstmt.executeUpdate();
             if (affected<1)
-                throw new SQLException("Prisoner could not be added");
+                throw new SQLException("Song could not be added");
 
             // Get database generated id
             ResultSet rs = pstmt.getGeneratedKeys();
@@ -123,7 +123,7 @@ public class DALManager {
 
             int affected = pstmt.executeUpdate();
             if (affected<1)
-                throw new SQLException("Prisoner could not be added");
+                throw new SQLException("PlayList could not be added");
 
             // Get database generated id
             ResultSet rs = pstmt.getGeneratedKeys();
@@ -151,5 +151,19 @@ public class DALManager {
                     Level.SEVERE, null, ex);
         }
     }
+
+    public void remove(PlayList selectedPlayList) {
+        try (Connection con = cm.getConnection()) {
+            String sql
+                    = "DELETE FROM PlayList WHERE id=?";
+            PreparedStatement pstmt
+                    = con.prepareStatement(sql);
+            pstmt.setInt(1, selectedPlayList.getId());
+            pstmt.execute();
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DALManager.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }}
     
 }

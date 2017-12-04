@@ -14,8 +14,6 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mytunes.BE.PlayList;
-
-
 import mytunes.BE.Song;
 import mytunes.BLL.BLLManager;
 
@@ -64,6 +62,15 @@ public class SongModel {
     }
     
     // method to set the stage/opening a window on the view. Is called in the MainWindowController
+
+    public void remove(PlayList selectedPlayList) {
+        bllManager.remove(selectedPlayList);
+        pList.remove(selectedPlayList); 
+    }
+
+    public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) {
+        bllManager.addSongToPlayList(selectedSong,selectedPlayList);
+    }
 
     
     

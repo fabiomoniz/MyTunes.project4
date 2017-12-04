@@ -28,13 +28,23 @@ public class BLLManager {
         return DAL.getAllSongs();
     }
     
+    public List<PlayList> getAllPlayLists(){
+        return DAL.getAllPlayList();
+    }
+    
+    public ObservableList<Song> getSongList()
+    {
+        return songs;
+    }
+    
+    public ObservableList<PlayList> getPlayList()
+    {
+        return playLists;
+    }
+    
     public void addSongsList(Song song) {
         DAL.addSong(song);
         songs.add(song);
-    }
-    
-    public List<PlayList> getAllPlayLists(){
-        return DAL.getAllPlayList();
     }
     
     public void add(Song song)
@@ -46,15 +56,19 @@ public class BLLManager {
         DAL.addPlayList(playList);
     }
     
-    public ObservableList<Song> getSongList()
-    {
-        return songs;
-    }
+    
     
     public void remove(Song selectedSong) {
         DAL.remove(selectedSong);
     }
 
-    
+    public void remove(PlayList selectedPlayList) {
+        DAL.remove(selectedPlayList);
+    }
+
+    public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) {
+        selectedPlayList.getPlayListSongs().add(selectedSong);
+    }
+
 }
 

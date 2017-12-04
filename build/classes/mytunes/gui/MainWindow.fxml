@@ -27,7 +27,7 @@
             <TableColumn id="columnTime" fx:id="columnTime" prefWidth="47.0" text="Time" />
         </columns>
       </TableView>
-      <ListView layoutX="258.0" layoutY="135.0" prefHeight="377.0" prefWidth="149.0" />
+      <ListView fx:id="listview" layoutX="258.0" layoutY="135.0" prefHeight="377.0" prefWidth="149.0" />
       <Button layoutX="39.0" layoutY="521.0" mnemonicParsing="false" onAction="#playlistNew" text="New" />
       <Button layoutX="87.0" layoutY="521.0" mnemonicParsing="false" onAction="#playListEdit" text="Edit" />
       <Button layoutX="131.0" layoutY="521.0" mnemonicParsing="false" onAction="#playListDelete" text="Delete" />
@@ -42,7 +42,7 @@
       <Button layoutX="258.0" layoutY="521.0" mnemonicParsing="false" text="Up" />
       <Button layoutX="300.0" layoutY="521.0" mnemonicParsing="false" text="Down" />
       <Button layoutX="357.0" layoutY="521.0" mnemonicParsing="false" text="Delete" />
-      <Button layoutX="413.0" layoutY="135.0" mnemonicParsing="false" text="Insert" />
+      <Button layoutX="413.0" layoutY="135.0" mnemonicParsing="false" onAction="#clickedInsert" text="Insert" />
       <Button layoutX="329.0" layoutY="64.0" mnemonicParsing="false" onAction="#songPlay" text="Play" />
       <Button layoutX="287.0" layoutY="64.0" mnemonicParsing="false" onAction="#songLast" text="Last" />
       <Button layoutX="372.0" layoutY="64.0" mnemonicParsing="false" onAction="#songNext" text="Next" />

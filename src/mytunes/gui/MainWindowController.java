@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,7 +43,7 @@ public class MainWindowController implements Initializable {
     
 
     BLLManager bll = new BLLManager();
-    
+    PlayList pl = new PlayList();
     SongModel model = new SongModel();
     
 
@@ -67,6 +68,8 @@ public class MainWindowController implements Initializable {
     private TableColumn<PlayList, String> columnPlayListName;
     @FXML
     private TableColumn<PlayList, Float> columnTotalTime;
+    @FXML
+    private ListView<String> listview;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,7 +87,7 @@ public class MainWindowController implements Initializable {
         columnNumberSongs.setCellValueFactory(
             new PropertyValueFactory("numberSongs"));
         columnPlayListName.setCellValueFactory(
-            new PropertyValueFactory("playListName"));
+            new PropertyValueFactory("playListnName"));
         columnTotalTime.setCellValueFactory(
             new PropertyValueFactory("totalTime"));
         
@@ -114,7 +117,10 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void playListDelete(ActionEvent event) {
-        
+        PlayList selectedPlayList
+                = playList.getSelectionModel().getSelectedItem();
+
+        model.remove(selectedPlayList);
     }
 
     // opens Songtable window when clicking new song
@@ -165,5 +171,18 @@ public class MainWindowController implements Initializable {
     @FXML
     private void buttonclose(ActionEvent event) {
         Platform.exit();
+    }
+
+    @FXML
+    private void clickedInsert(ActionEvent event) {
+        Song selectedSong
+            = songsList.getSelectionModel().getSelectedItem();
+        
+        PlayList selectedPlayList
+            = playList.getSelectionModel().getSelectedItem();
+        
+        model.addSongToPlayList(selectedSong , selectedPlayList);
+        
+        listview.getItems().setAll(pl.getAllSongNamesFromPlayList());
     }
 }
