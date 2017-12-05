@@ -93,6 +93,10 @@ public class MainWindowController implements Initializable {
         
         playList.setItems(model.getPlayList());
         
+        System.out.println(model.getSongList());
+        System.out.println(model.getPlayList());
+        System.out.println(model.getAllSp());
+        model.setAllSongsIntoPlayLists();
     }
     
     // opens the Playlist window when clicking new playlistp
@@ -183,7 +187,9 @@ public class MainWindowController implements Initializable {
         
         model.addSongToPlayList(selectedSong , selectedPlayList);
         
+        
         listview.setItems(selectedPlayList.getPlayListSongs());
+        
     }
 
     @FXML
@@ -191,6 +197,7 @@ public class MainWindowController implements Initializable {
         PlayList selectedPlayList
             = playList.getSelectionModel().getSelectedItem();
 
+        System.out.println(selectedPlayList);
         listview.setItems(selectedPlayList.getPlayListSongs());
         
         

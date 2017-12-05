@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mytunes.BE.PlayList;
 import mytunes.BE.Song;
+import mytunes.BE.songsInPlayList;
 import mytunes.BLL.BLLManager;
 
 /**
@@ -28,6 +29,12 @@ public class SongModel {
             = FXCollections.observableArrayList(bllManager.getAllSongs());
     private final ObservableList<PlayList> pList
             = FXCollections.observableArrayList(bllManager.getAllPlayLists());
+    private final ObservableList<songsInPlayList> xList
+            = FXCollections.observableArrayList(bllManager.getAllSp());
+    
+    public ObservableList<songsInPlayList> getAllSp() {
+       return xList;
+    }
     
     public ObservableList<Song> getSongList()
     {
@@ -60,8 +67,6 @@ public class SongModel {
         bllManager.remove(selectedSong);
         sList.remove(selectedSong);        
     }
-    
-    // method to set the stage/opening a window on the view. Is called in the MainWindowController
 
     public void remove(PlayList selectedPlayList) {
         pList.remove(selectedPlayList); 
@@ -74,7 +79,29 @@ public class SongModel {
     }
 
     
-    
+    public void setAllSongsIntoPlayLists(){
+        
+        for (songsInPlayList xl : xList) {
+            
+            int PlayListId = xl.getPlayListId();
+            int SongListId = xl.getSongId();
+            
+            for (PlayList pl : pList) {
+                int PlayListId2 = pl.getId();
+                
+                for (Song sl : sList) {
+                    
+                    int SongListId2 = sl.getId();
+                    
+                    if(PlayListId == PlayListId2 && SongListId == SongListId2)
+                    {
+                        pl.playListSongs.add(sl);
+                    }
+                }
+            }
+        }
+        
+    }
 }
 
 

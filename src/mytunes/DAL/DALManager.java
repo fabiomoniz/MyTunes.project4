@@ -198,7 +198,7 @@ public class DALManager {
         }
     }
     
-    public List<songsInPlayList> getAllSongsFromPlaylist() {
+    public List<songsInPlayList> getAllSp() {
         List<songsInPlayList> allSongs
                 = new ArrayList();
 

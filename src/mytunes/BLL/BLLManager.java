@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mytunes.BE.PlayList;
 import mytunes.BE.Song;
+import mytunes.BE.songsInPlayList;
 import mytunes.DAL.DALManager;
 
 /**
@@ -25,8 +26,15 @@ public class BLLManager {
     
     DALManager DAL = new DALManager();
     
+    
+    
+    
     public List<Song> getAllSongs(){
         return DAL.getAllSongs();
+    }
+    
+    public List<songsInPlayList> getAllSp(){
+        return DAL.getAllSp();
     }
     
     public List<PlayList> getAllPlayLists(){
@@ -73,34 +81,17 @@ public class BLLManager {
         selectedPlayList.setPlayListSongs(songsInPlayList);
         
         /*DAL.addSongToPlayList(selectedPlayList, selectedSong);
-        setAllSongsInPlayListIntoPlayList();
+        selectedPlayList.getPlayListSongs().add(selectedSong);
         songsInPlayList.setAll(selectedPlayList.getAllSongNamesFromPlayList());*/
+        
+        
+        
     }
 
-    public void setAllSongsInPlayListIntoPlayList(){
-        for (int i = 0; i < DAL.getAllSongsFromPlaylist().size(); i++) {
-            
-            int PlayListId = DAL.getAllSongsFromPlaylist().get(i).getPlayListId();
-            int SongId = DAL.getAllSongsFromPlaylist().get(i).getSongId();
-            
-            for (PlayList playlist : playLists) {
-                
-              if(PlayListId == playlist.getId()) 
-              {
-                  for (Song song : songs) {
-                      
-                      if (SongId == song.getId())
-                      {
-                          playlist.getAllSongNamesFromPlayList().add(song);
-                      }
-                      
-                  }
-              }
-            }
-            
-        }
-        
-        
-    }
+    
+    
+    
+    
+    
 }
 

@@ -26,7 +26,7 @@ public class PlayList {
 
     private final StringProperty playListnName = new SimpleStringProperty();
     private final IntegerProperty id = new SimpleIntegerProperty();
-    private final ListProperty<Song> playListSongs = new SimpleListProperty<>();
+    public final ListProperty<Song> playListSongs = new SimpleListProperty<>();
     
     public ObservableList getPlayListSongs() {
         return playListSongs.get();
@@ -71,7 +71,7 @@ public class PlayList {
 
     @Override
     public String toString() {
-        return "PlayList{" + "playListSongs=" + playListSongs + '}';
+        return getPlayListnName();
     }
     
     

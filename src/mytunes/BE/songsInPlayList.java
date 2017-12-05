@@ -41,6 +41,11 @@ public class songsInPlayList {
     public IntegerProperty playListIdProperty() {
         return playListId;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(getPlayListId()) + " " + String.valueOf(getSongId()) ;
+    }
     
     
 }
