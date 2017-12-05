@@ -190,7 +190,9 @@ public class MainWindowController implements Initializable {
     private void updateList(MouseEvent event) {
         PlayList selectedPlayList
             = playList.getSelectionModel().getSelectedItem();
+
+        listview.setItems(selectedPlayList.getPlayListSongs());
         
-        System.out.println("fuck");
+        
     }
 }

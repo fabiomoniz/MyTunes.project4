@@ -64,8 +64,9 @@ public class SongModel {
     // method to set the stage/opening a window on the view. Is called in the MainWindowController
 
     public void remove(PlayList selectedPlayList) {
-        bllManager.remove(selectedPlayList);
         pList.remove(selectedPlayList); 
+        bllManager.remove(selectedPlayList);
+        
     }
 
     public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) {

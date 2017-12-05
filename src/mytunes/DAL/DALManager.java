@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import mytunes.BE.PlayList;
 import mytunes.BE.Song;
+import mytunes.BE.songsInPlayList;
 
 /**
  *
@@ -115,7 +116,7 @@ public class DALManager {
             PreparedStatement pstmt
                     = con.prepareStatement(
                             sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(2, playList.getPlayListnName());
+            pstmt.setString(1, playList.getPlayListnName());
 
             int affected = pstmt.executeUpdate();
             if (affected<1)
@@ -151,15 +152,73 @@ public class DALManager {
     public void remove(PlayList selectedPlayList) {
         try (Connection con = cm.getConnection()) {
             String sql
+                    = "DELETE FROM songsInPlayList WHERE playListId=?"; //delete first from songsInPlayList first 
+            PreparedStatement pstmt                                     //to avoid the "DELETE statement conflicted with the REFERENCE constraint"
+                    = con.prepareStatement(sql);                        // error , where deleting a playlist which is getting information
+            pstmt.setInt(1, selectedPlayList.getId());                  // information from another table accessing the same id.
+            pstmt.execute();                                            //like a "nullPointerException" -> (not the same but similar)
+            
+            String sql2
                     = "DELETE FROM PlayList WHERE id=?";
-            PreparedStatement pstmt
-                    = con.prepareStatement(sql);
-            pstmt.setInt(1, selectedPlayList.getId());
-            pstmt.execute();
+            PreparedStatement pstmt2
+                    = con.prepareStatement(sql2);
+            pstmt2.setInt(1, selectedPlayList.getId());
+            pstmt2.execute();
         }
         catch (SQLException ex) {
             Logger.getLogger(DALManager.class.getName()).log(
                     Level.SEVERE, null, ex);
         }}
+
+    public void addSongToPlayList(PlayList selectedPlayList, Song selectedSong) {
+        try (Connection con = cm.getConnection()) {
+            String sql
+                    = "INSERT INTO songsInPlayList"
+                    + "(playListId, songId) "
+                    + "VALUES(?,?)";
+            PreparedStatement pstmt
+                    = con.prepareStatement(
+                            sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, selectedPlayList.getId());
+            pstmt.setInt(2, selectedSong.getId());
+
+            int affected = pstmt.executeUpdate();
+            if (affected<1)
+                throw new SQLException("PlayList could not be added");
+
+            // Get database generated id
+            ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                selectedSong.setId(rs.getInt(1));
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DALManager.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+    }
+    
+    public List<songsInPlayList> getAllSongsFromPlaylist() {
+        List<songsInPlayList> allSongs
+                = new ArrayList();
+
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement stmt
+                    = con.prepareStatement("SELECT * FROM songsInPlayList");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                songsInPlayList sp = new songsInPlayList();
+                sp.setPlayListId(rs.getInt("playListId"));
+                sp.setSongId(rs.getInt("songId"));
+
+                allSongs.add(sp);
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DALManager.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+        return allSongs;
+    }
     
 }

@@ -70,7 +70,33 @@ public class BLLManager {
     public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) {
         songsInPlayList.add(selectedSong);
         selectedPlayList.setPlayListSongs(songsInPlayList);
+        DAL.addSongToPlayList(selectedPlayList, selectedSong);
     }
 
+    public void setAllSongsInPlayListIntoPlayList(){
+        for (int i = 0; i < DAL.getAllSongsFromPlaylist().size(); i++) {
+            
+            int PlayListId = DAL.getAllSongsFromPlaylist().get(i).getPlayListId();
+            int SongId = DAL.getAllSongsFromPlaylist().get(i).getSongId();
+            
+            for (PlayList playlist : playLists) {
+                
+              if(PlayListId == playlist.getId()) 
+              {
+                  for (Song song : songs) {
+                      
+                      if (SongId == song.getId())
+                      {
+                          playlist.getAllSongNamesFromPlayList().add(song);
+                      }
+                      
+                  }
+              }
+            }
+            
+        }
+        
+        
+    }
 }
 
