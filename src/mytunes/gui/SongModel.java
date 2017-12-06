@@ -95,7 +95,7 @@ public class SongModel {
                     
                     if(PlayListId == PlayListId2 && SongListId == SongListId2)
                     {
-                        pl.playListSongs.add(sl);
+                        pl.getPlayListSongs().add(sl);
                     }
                 }
             }

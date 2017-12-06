@@ -76,13 +76,19 @@ public class BLLManager {
     }
 
     public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) {
+        /*DAL.addSongToPlayList(selectedPlayList, selectedSong);
+        songsInPlayList.add(selectedSong);
+        selectedPlayList.setPlayListSongs(songsInPlayList);*/
+        
         DAL.addSongToPlayList(selectedPlayList, selectedSong);
+        songsInPlayList.clear();
+        if(selectedPlayList.getPlayListSongs() != null)
+        {
+            songsInPlayList.addAll(selectedPlayList.getPlayListSongs());
+        }
         songsInPlayList.add(selectedSong);
         selectedPlayList.setPlayListSongs(songsInPlayList);
         
-        /*DAL.addSongToPlayList(selectedPlayList, selectedSong);
-        selectedPlayList.getPlayListSongs().add(selectedSong);
-        songsInPlayList.setAll(selectedPlayList.getAllSongNamesFromPlayList());*/
         
         
         

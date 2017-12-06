@@ -15,6 +15,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -26,7 +27,13 @@ public class PlayList {
 
     private final StringProperty playListnName = new SimpleStringProperty();
     private final IntegerProperty id = new SimpleIntegerProperty();
-    public final ListProperty<Song> playListSongs = new SimpleListProperty<>();
+    private final ListProperty<Song> playListSongs = new SimpleListProperty<>();
+
+    public PlayList() {
+        playListSongs.set(FXCollections.observableArrayList());
+    }
+    
+    
     
     public ObservableList getPlayListSongs() {
         return playListSongs.get();
