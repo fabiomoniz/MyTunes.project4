@@ -96,7 +96,7 @@ public class MainWindowController implements Initializable {
         System.out.println(model.getSongList());
         System.out.println(model.getPlayList());
         System.out.println(model.getAllSp());
-        model.setAllSongsIntoPlayLists();
+        //model.setAllSongsIntoPlayLists();
     }
     
     // opens the Playlist window when clicking new playlistp
