@@ -6,6 +6,7 @@
 package mytunes.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import mytunes.BE.PlayList;
 import mytunes.BE.Song;
 import mytunes.BE.songsInPlayList;
 import mytunes.BLL.BLLManager;
+
 
 /**
  *
@@ -31,6 +33,8 @@ public class SongModel {
             = FXCollections.observableArrayList(bllManager.getAllPlayLists());
     private final ObservableList<songsInPlayList> xList
             = FXCollections.observableArrayList(bllManager.getAllSp());
+     private ObservableList<Song> songsInPlayList 
+            = FXCollections.observableArrayList(new ArrayList<>());
     
     public ObservableList<songsInPlayList> getAllSp() {
        return xList;
@@ -75,6 +79,14 @@ public class SongModel {
     }
 
     public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) {
+        selectedPlayList.add(selectedSong);
+        songsInPlayList.clear();
+        songsInPlayList.add(selectedSong);
+        if(selectedPlayList.getPlayListSongs() != null)
+        {
+            songsInPlayList.addAll(selectedPlayList.getPlayListSongs());
+        }
+       // selectedPlayList.setPlayListSongs(songsInPlayList);
         bllManager.addSongToPlayList(selectedSong,selectedPlayList);
     }
 

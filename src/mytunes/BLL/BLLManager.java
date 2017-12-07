@@ -81,13 +81,13 @@ public class BLLManager {
         selectedPlayList.setPlayListSongs(songsInPlayList);*/
         
         DAL.addSongToPlayList(selectedPlayList, selectedSong);
-        songsInPlayList.clear();
-        if(selectedPlayList.getPlayListSongs() != null)
-        {
-            songsInPlayList.addAll(selectedPlayList.getPlayListSongs());
-        }
-        songsInPlayList.add(selectedSong);
-        selectedPlayList.setPlayListSongs(songsInPlayList);
+//        songsInPlayList.clear();
+//        songsInPlayList.add(selectedSong);
+//        if(selectedPlayList.getPlayListSongs() != null)
+//        {
+//            songsInPlayList.addAll(selectedPlayList.getPlayListSongs());
+//        }
+//        selectedPlayList.setPlayListSongs(songsInPlayList);
         
         
         

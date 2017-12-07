@@ -80,6 +80,10 @@ public class PlayList {
     public String toString() {
         return getPlayListnName();
     }
+
+    public void add(Song selectedSong) {
+        playListSongs.add(selectedSong);
+    }
     
     
 }
