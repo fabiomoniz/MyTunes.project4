@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import java.awt.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -100,7 +100,6 @@ public class MainWindowController implements Initializable {
     }
     
     // opens the Playlist window when clicking new playlistp
-    @FXML
     private void playlistNew(ActionEvent event) throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
@@ -115,11 +114,7 @@ public class MainWindowController implements Initializable {
         primaryStage.showAndWait();
     }
 
-    @FXML
-    private void playListEdit(ActionEvent event) {
-    }
 
-    @FXML
     private void playListDelete(ActionEvent event) {
         PlayList selectedPlayList
                 = playList.getSelectionModel().getSelectedItem();
@@ -128,7 +123,6 @@ public class MainWindowController implements Initializable {
     }
 
     // opens Songtable window when clicking new song
-    @FXML
     private void songListNew(ActionEvent event) throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
@@ -143,11 +137,6 @@ public class MainWindowController implements Initializable {
         primaryStage.showAndWait();
     }
 
-    @FXML
-    private void songListEdit(ActionEvent event) {
-    }
-
-    @FXML
     private void songListDelete(ActionEvent event) {
         Song selectedSong
                 = songsList.getSelectionModel().getSelectedItem();
@@ -156,28 +145,15 @@ public class MainWindowController implements Initializable {
     }
     
 
-    @FXML
-    private void songPlay(ActionEvent event) {
-    }
-
-    @FXML
-    private void songLast(ActionEvent event) {
-    }
-
-    @FXML
-    private void songNext(ActionEvent event) {
-    }
 
     @FXML
     private void SongVolumeDragDetected(MouseEvent event) {
     }
 
-    @FXML
     private void buttonclose(ActionEvent event) {
         Platform.exit();
     }
 
-    @FXML
     private void clickedInsert(ActionEvent event) {
         Song selectedSong
             = songsList.getSelectionModel().getSelectedItem();
@@ -201,5 +177,65 @@ public class MainWindowController implements Initializable {
         listview.setItems(selectedPlayList.getPlayListSongs());
         
         
+    }
+
+    @FXML
+    private void playlistNew(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void playListEdit(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void playListDelete(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void songListNew(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void songListEdit(javafx.event.ActionEvent event) throws IOException {
+        Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("editSong.fxml"));
+        
+        Parent root = fxLoader.load();
+        EditSongController stc = fxLoader.getController();
+        stc.setModel(model);
+        
+        Song selectedSong
+                = songsList.getSelectionModel().getSelectedItem();
+        stc.setSong(selectedSong);
+        
+        
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.showAndWait();
+    }
+
+    @FXML
+    private void songListDelete(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void buttonclose(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void clickedInsert(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void songPlay(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void songLast(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void songNext(javafx.event.ActionEvent event) {
     }
 }

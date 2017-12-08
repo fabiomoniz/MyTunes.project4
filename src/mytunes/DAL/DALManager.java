@@ -174,23 +174,24 @@ public class DALManager {
         try (Connection con = cm.getConnection()) {
             String sql
                     = "INSERT INTO songsInPlayList"
-                    + "(playListId, songId) "
+                    + "(songId, playListId) "
                     + "VALUES(?,?)";
             PreparedStatement pstmt
                     = con.prepareStatement(
                             sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, selectedPlayList.getId());
-            pstmt.setInt(2, selectedSong.getId());
+            pstmt.setInt(1, selectedSong.getId());
+            pstmt.setInt(2, selectedPlayList.getId());
 
             int affected = pstmt.executeUpdate();
+            
             if (affected<1)
-                throw new SQLException("PlayList could not be added");
+                throw new SQLException("Song could not be added to the playlist");
 
             // Get database generated id
-            ResultSet rs = pstmt.getGeneratedKeys();
+            /*ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 selectedSong.setId(rs.getInt(1));
-            }
+            }*/
         }
         catch (SQLException ex) {
             Logger.getLogger(DALManager.class.getName()).log(

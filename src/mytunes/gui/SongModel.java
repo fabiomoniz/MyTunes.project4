@@ -114,6 +114,11 @@ public class SongModel {
         }
         
     }
+    
+    public void updateSong(Song song){
+        
+    }
+            
 }
 
 
