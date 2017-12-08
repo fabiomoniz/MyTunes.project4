@@ -63,15 +63,14 @@ public class EditSongController implements Initializable {
 
     @FXML
     private void buttonsave(ActionEvent event) {
-        Song song = new Song();
         
-        song.setTitle(txtfieldtitle.getText());
-        song.setArtist(txtfieldartist.getText());
-        song.setCategory(comboCategory.getValue());
-        song.setTime(Float.parseFloat(txtfieldtime.getText()));
-        song.setFilePath(txtfieldfile.getText());
+        selectedSong.setTitle(txtfieldtitle.getText());
+        selectedSong.setArtist(txtfieldartist.getText());
+        selectedSong.setCategory(comboCategory.getValue());
+        selectedSong.setTime(Float.parseFloat(txtfieldtime.getText()));
+        selectedSong.setFilePath(txtfieldfile.getText());
         
-        model.updateSong(song);
+        model.updateSong(selectedSong);
         
         ((Node)event.getSource()).getScene().getWindow().hide();
     }
