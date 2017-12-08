@@ -99,73 +99,10 @@ public class MainWindowController implements Initializable {
         model.setAllSongsIntoPlayLists();
     }
     
-    // opens the Playlist window when clicking new playlistp
-    private void playlistNew(ActionEvent event) throws IOException {
-        Stage primaryStage = new Stage();
-        primaryStage.initModality(Modality.WINDOW_MODAL);
-        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("Playlist.fxml"));
-        
-        Parent root = fxLoader.load();
-        PlaylistController stc = fxLoader.getController();
-        stc.setModel(model);
-        
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.showAndWait();
-    }
-
-
-    private void playListDelete(ActionEvent event) {
-        PlayList selectedPlayList
-                = playList.getSelectionModel().getSelectedItem();
-
-        model.remove(selectedPlayList);
-    }
-
-    // opens Songtable window when clicking new song
-    private void songListNew(ActionEvent event) throws IOException {
-        Stage primaryStage = new Stage();
-        primaryStage.initModality(Modality.WINDOW_MODAL);
-        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("Songtable.fxml"));
-        
-        Parent root = fxLoader.load();
-        SongtableController stc = fxLoader.getController();
-        stc.setModel(model);
-        
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.showAndWait();
-    }
-
-    private void songListDelete(ActionEvent event) {
-        Song selectedSong
-                = songsList.getSelectionModel().getSelectedItem();
-
-        model.remove(selectedSong);
-    }
-    
 
 
     @FXML
     private void SongVolumeDragDetected(MouseEvent event) {
-    }
-
-    private void buttonclose(ActionEvent event) {
-        Platform.exit();
-    }
-
-    private void clickedInsert(ActionEvent event) {
-        Song selectedSong
-            = songsList.getSelectionModel().getSelectedItem();
-        
-        PlayList selectedPlayList
-            = playList.getSelectionModel().getSelectedItem();
-        
-        model.addSongToPlayList(selectedSong , selectedPlayList);
-        
-        
-        listview.setItems(selectedPlayList.getPlayListSongs());
-        
     }
 
     @FXML
@@ -177,22 +114,6 @@ public class MainWindowController implements Initializable {
         listview.setItems(selectedPlayList.getPlayListSongs());
         
         
-    }
-
-    @FXML
-    private void playlistNew(javafx.event.ActionEvent event) {
-    }
-
-    @FXML
-    private void playListEdit(javafx.event.ActionEvent event) {
-    }
-
-    @FXML
-    private void playListDelete(javafx.event.ActionEvent event) {
-    }
-
-    @FXML
-    private void songListNew(javafx.event.ActionEvent event) {
     }
 
     @FXML
@@ -216,15 +137,72 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
+    private void playlistNew(javafx.event.ActionEvent event) throws IOException {
+        Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("Playlist.fxml"));
+        
+        Parent root = fxLoader.load();
+        PlaylistController stc = fxLoader.getController();
+        stc.setModel(model);
+        
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.showAndWait();
+    }
+
+    @FXML
+    private void playListEdit(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void playListDelete(javafx.event.ActionEvent event) {
+        PlayList selectedPlayList
+                = playList.getSelectionModel().getSelectedItem();
+
+        model.remove(selectedPlayList);
+    }
+
+    @FXML
+    private void songListNew(javafx.event.ActionEvent event) throws IOException {
+        Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("Songtable.fxml"));
+        
+        Parent root = fxLoader.load();
+        SongtableController stc = fxLoader.getController();
+        stc.setModel(model);
+        
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.showAndWait();
+    }
+
+    @FXML
     private void songListDelete(javafx.event.ActionEvent event) {
+        Song selectedSong
+                = songsList.getSelectionModel().getSelectedItem();
+
+        model.remove(selectedSong);
     }
 
     @FXML
     private void buttonclose(javafx.event.ActionEvent event) {
+        Platform.exit();
     }
 
     @FXML
     private void clickedInsert(javafx.event.ActionEvent event) {
+        Song selectedSong
+            = songsList.getSelectionModel().getSelectedItem();
+        
+        PlayList selectedPlayList
+            = playList.getSelectionModel().getSelectedItem();
+        
+        model.addSongToPlayList(selectedSong , selectedPlayList);
+        
+        
+        listview.setItems(selectedPlayList.getPlayListSongs());
     }
 
     @FXML
