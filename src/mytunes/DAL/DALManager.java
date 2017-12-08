@@ -136,12 +136,21 @@ public class DALManager {
     
     public void remove(Song selectedSong) {
         try (Connection con = cm.getConnection()) {
+           
             String sql
+                    = "DELETE FROM songsInPlayList WHERE songId=?"; //delete from songsInPlayList first 
+            PreparedStatement pstmt                                     //to avoid the "DELETE statement conflicted with the REFERENCE constraint"
+                    = con.prepareStatement(sql);                        // error , where deleting a playlist which is getting information
+            pstmt.setInt(1, selectedSong.getId());                  // information from another table accessing the same id.
+            pstmt.execute(); 
+            
+            
+            String sql2
                     = "DELETE FROM SongTable WHERE id=?";
-            PreparedStatement pstmt
-                    = con.prepareStatement(sql);
-            pstmt.setInt(1, selectedSong.getId());
-            pstmt.execute();
+            PreparedStatement pstmt2
+                    = con.prepareStatement(sql2);
+            pstmt2.setInt(1, selectedSong.getId());
+            pstmt2.execute();
         }
         catch (SQLException ex) {
             Logger.getLogger(DALManager.class.getName()).log(
