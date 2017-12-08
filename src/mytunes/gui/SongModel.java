@@ -117,6 +117,8 @@ public class SongModel {
     
     public void updateSong(Song song){
         
+        bllManager.updateSong(song);
+        
     }
             
 }

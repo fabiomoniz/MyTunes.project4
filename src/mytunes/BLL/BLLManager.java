@@ -65,8 +65,6 @@ public class BLLManager {
         DAL.addPlayList(playList);
     }
     
-    
-    
     public void remove(Song selectedSong) {
         DAL.remove(selectedSong);
     }
@@ -75,23 +73,12 @@ public class BLLManager {
         DAL.remove(selectedPlayList);
     }
 
-    public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) {
-        /*DAL.addSongToPlayList(selectedPlayList, selectedSong);
-        songsInPlayList.add(selectedSong);
-        selectedPlayList.setPlayListSongs(songsInPlayList);*/
-        
-        DAL.addSongToPlayList(selectedPlayList, selectedSong);
-//        songsInPlayList.clear();
-//        songsInPlayList.add(selectedSong);
-//        if(selectedPlayList.getPlayListSongs() != null)
-//        {
-//            songsInPlayList.addAll(selectedPlayList.getPlayListSongs());
-//        }
-//        selectedPlayList.setPlayListSongs(songsInPlayList);
-        
-        
-        
-        
+    public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) { 
+        DAL.addSongToPlayList(selectedPlayList, selectedSong);        
+    }
+
+    public void updateSong(Song song) {
+        DAL.updateSong(song);
     }
 
     

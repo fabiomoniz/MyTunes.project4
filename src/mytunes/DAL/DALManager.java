@@ -152,7 +152,7 @@ public class DALManager {
     public void remove(PlayList selectedPlayList) {
         try (Connection con = cm.getConnection()) {
             String sql
-                    = "DELETE FROM songsInPlayList WHERE playListId=?"; //delete first from songsInPlayList first 
+                    = "DELETE FROM songsInPlayList WHERE playListId=?"; //delete from songsInPlayList first 
             PreparedStatement pstmt                                     //to avoid the "DELETE statement conflicted with the REFERENCE constraint"
                     = con.prepareStatement(sql);                        // error , where deleting a playlist which is getting information
             pstmt.setInt(1, selectedPlayList.getId());                  // information from another table accessing the same id.
@@ -187,11 +187,6 @@ public class DALManager {
             if (affected<1)
                 throw new SQLException("Song could not be added to the playlist");
 
-            // Get database generated id
-            /*ResultSet rs = pstmt.getGeneratedKeys();
-            if (rs.next()) {
-                selectedSong.setId(rs.getInt(1));
-            }*/
         }
         catch (SQLException ex) {
             Logger.getLogger(DALManager.class.getName()).log(
@@ -220,6 +215,37 @@ public class DALManager {
                     Level.SEVERE, null, ex);
         }
         return allSongs;
+    }
+
+    public void updateSong(Song song) {
+             try (Connection con = cm.getConnection()) {
+            String sql
+                    = "UPDATE SongTable SET "
+                    + "title=?, artist=?, category=?, time=?, filePath=? "
+                    + "WHERE id=?";
+                    
+            PreparedStatement pstmt
+                    = con.prepareStatement(
+                            sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, song.getTitle());
+            pstmt.setString(2, song.getArtist());
+            pstmt.setString(3, song.getCategory());
+            pstmt.setFloat(4, song.getTime());
+            pstmt.setString(5, song.getFilePath());
+            pstmt.setInt(6, song.getId());
+           
+
+            int affected = pstmt.executeUpdate();
+            
+            if (affected<1)
+                throw new SQLException("Could not update Song");
+
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DALManager.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+        
     }
     
 }
