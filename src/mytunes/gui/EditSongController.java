@@ -89,10 +89,12 @@ public class EditSongController implements Initializable {
     }
     
     public void setSong(Song selectedSong){
-        
         this.selectedSong = selectedSong; 
-        
-        
+        txtfieldtitle.setText(selectedSong.getTitle());
+        txtfieldartist.setText(selectedSong.getArtist());
+        comboCategory.setValue(selectedSong.getCategory());
+        txtfieldtime.setText(selectedSong.getTime() + "");
+        txtfieldfile.setText(selectedSong.getFilePath());
         
     }
 }
