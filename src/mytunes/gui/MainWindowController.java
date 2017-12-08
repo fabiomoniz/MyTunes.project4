@@ -9,12 +9,8 @@ package mytunes.gui;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
-import java.awt.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -146,13 +142,33 @@ public class MainWindowController implements Initializable {
         PlaylistController stc = fxLoader.getController();
         stc.setModel(model);
         
+        Song selectedSong
+                = songsList.getSelectionModel().getSelectedItem();
+        
+        
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.showAndWait();
     }
 
     @FXML
-    private void playListEdit(javafx.event.ActionEvent event) {
+    private void playListEdit(javafx.event.ActionEvent event) throws IOException {
+        Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("PlayListEdit.fxml"));
+        
+        Parent root = fxLoader.load();
+        PlayListEditController stc = fxLoader.getController();
+        stc.setModel(model);
+        
+        PlayList selectedPlaylist
+                = playList.getSelectionModel().getSelectedItem();
+        stc.setPlayList(selectedPlaylist);
+        
+        
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.showAndWait();
     }
 
     @FXML

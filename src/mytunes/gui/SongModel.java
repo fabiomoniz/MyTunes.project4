@@ -120,6 +120,11 @@ public class SongModel {
         bllManager.updateSong(song);
         
     }
+
+    void updatePlayList(PlayList playlist) {
+        
+        bllManager.updatePlayList(playlist);
+    }
             
 }
 

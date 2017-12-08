@@ -81,6 +81,10 @@ public class BLLManager {
         DAL.updateSong(song);
     }
 
+    public void updatePlayList(PlayList playlist) {
+       DAL.updatePlayList(playlist);
+    }
+
     
     
     

@@ -247,5 +247,33 @@ public class DALManager {
         }
         
     }
+
+    public void updatePlayList(PlayList playlist) {
+        try (Connection con = cm.getConnection()) {
+            String sql
+                    = "UPDATE PlayList SET "
+                    + "name=? "
+                    + "WHERE id=?";
+                    
+            PreparedStatement pstmt
+                    = con.prepareStatement(
+                            sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, playlist.getPlayListnName());
+            pstmt.setInt(2, playlist.getId());
+          
+           
+
+            int affected = pstmt.executeUpdate();
+            
+            if (affected<1)
+                throw new SQLException("Could not update playlist");
+
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DALManager.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+       
+    }
     
 }
