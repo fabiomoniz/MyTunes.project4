@@ -284,5 +284,23 @@ public class DALManager {
         }
        
     }
+
+    public void remove(songsInPlayList selectedSongInPlayList) {
+        try (Connection con = cm.getConnection()) {
+           
+            String sql
+                    = "DELETE FROM songsInPlayList WHERE songId=? AND PlayListId=? "; //delete from songsInPlayList first 
+            PreparedStatement pstmt                                     //to avoid the "DELETE statement conflicted with the REFERENCE constraint"
+                    = con.prepareStatement(sql);                        // error , where deleting a playlist which is getting information
+            pstmt.setInt(1, selectedSongInPlayList.getPlayListId());  
+            pstmt.setInt(2, selectedSongInPlayList.getSongId());// information from another table accessing the same id.
+            
+            pstmt.execute(); 
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DALManager.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+    }
     
 }

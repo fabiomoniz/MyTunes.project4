@@ -33,7 +33,7 @@ public class SongModel {
             = FXCollections.observableArrayList(bllManager.getAllPlayLists());
     private final ObservableList<songsInPlayList> xList
             = FXCollections.observableArrayList(bllManager.getAllSp());
-     private ObservableList<Song> songsInPlayList 
+    private ObservableList<Song> songsInPlayList 
             = FXCollections.observableArrayList(new ArrayList<>());
     
     public ObservableList<songsInPlayList> getAllSp() {
@@ -121,9 +121,44 @@ public class SongModel {
         
     }
 
-    void updatePlayList(PlayList playlist) {
+    public void updatePlayList(PlayList playlist) {
         
         bllManager.updatePlayList(playlist);
+    }
+
+    public void remove(PlayList selectedPlayList, Song selectedSong) {
+        songsInPlayList sip = null;
+        Song s = null;
+        
+        for (songsInPlayList sp : xList) {
+            
+            if (sp.getPlayListId() == selectedPlayList.getId() && sp.getSongId() == selectedSong.getId())
+            {
+                sip = sp;
+            }
+            System.out.println(sp);
+        }
+        
+        if (sip != null)
+        {
+            xList.remove(sip);
+        }
+        
+        for (Song sp : songsInPlayList) {
+            
+            if (sp.getId() == selectedSong.getId())
+            {
+                s = sp;
+            }
+            System.out.println(sp);
+        }
+        
+        if(s != null)
+        {
+            songsInPlayList.remove(s);
+        }
+        
+        bllManager.remove(sip);
     }
             
 }

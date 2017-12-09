@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,7 +66,7 @@ public class MainWindowController implements Initializable {
     @FXML
     private TableColumn<PlayList, Float> columnTotalTime;
     @FXML
-    private ListView<String> listview;
+    private ListView<Song> listview;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -231,5 +232,15 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void songNext(javafx.event.ActionEvent event) {
+    }
+
+    @FXML
+    private void DeleteSongFromPlayList(ActionEvent event) {
+        PlayList selectedPlayList
+            = playList.getSelectionModel().getSelectedItem();
+        Song selectedSong = listview.getSelectionModel().getSelectedItem();
+        
+        model.remove(selectedPlayList, selectedSong);
+        
     }
 }

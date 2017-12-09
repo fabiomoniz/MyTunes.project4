@@ -85,6 +85,10 @@ public class BLLManager {
        DAL.updatePlayList(playlist);
     }
 
+    public void remove(songsInPlayList selectedSongInPlayList) {
+        DAL.remove(selectedSongInPlayList);
+    }
+
     
     
     
