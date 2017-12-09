@@ -7,6 +7,7 @@ package mytunes.gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -36,8 +37,9 @@ public class SongModel {
     private ObservableList<Song> songsInPlayList 
             = FXCollections.observableArrayList(new ArrayList<>());
     
+    
     public ObservableList<songsInPlayList> getAllSp() {
-       return xList;
+        return xList;
     }
     
     public ObservableList<Song> getSongList()
@@ -144,8 +146,7 @@ public class SongModel {
             xList.remove(sip);
         }
         
-        for (Song sp : songsInPlayList) {
-            
+        for (Song sp : sList) {
             if (sp.getId() == selectedSong.getId())
             {
                 s = sp;
@@ -157,8 +158,9 @@ public class SongModel {
         {
             songsInPlayList.remove(s);
         }
+        xList.remove(s);
         
-        bllManager.remove(sip);
+        bllManager.removeFromPlayList(sip);
     }
             
 }
