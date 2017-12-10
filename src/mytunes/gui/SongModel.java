@@ -88,7 +88,10 @@ public class SongModel {
         {
             songsInPlayList.addAll(selectedPlayList.getPlayListSongs());
         }
-       // selectedPlayList.setPlayListSongs(songsInPlayList);
+        songsInPlayList newSong = new songsInPlayList();
+        newSong.setPlayListId(selectedPlayList.getId());
+        newSong.setSongId(selectedSong.getId());
+        xList.add(newSong);
         bllManager.addSongToPlayList(selectedSong,selectedPlayList);
     }
 
@@ -141,10 +144,10 @@ public class SongModel {
             System.out.println(sp);
         }
         
-        if (sip != null)
-        {
-            xList.remove(sip);
-        }
+//        if (sip != null)
+//        {
+//            xList.remove(sip);
+//        }
         
         for (Song sp : sList) {
             if (sp.getId() == selectedSong.getId())
@@ -158,8 +161,8 @@ public class SongModel {
         {
             songsInPlayList.remove(s);
         }
-        xList.remove(s);
-        
+        xList.remove(sip);
+        System.out.println(songsInPlayList);
         bllManager.removeFromPlayList(sip);
     }
             

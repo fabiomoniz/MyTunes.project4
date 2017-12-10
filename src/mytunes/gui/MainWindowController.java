@@ -241,6 +241,10 @@ public class MainWindowController implements Initializable {
         Song selectedSong = listview.getSelectionModel().getSelectedItem();
         
         model.remove(selectedPlayList, selectedSong);
+      
+
+        System.out.println(selectedPlayList);
+        listview.setItems(selectedPlayList.getPlayListSongs());
         
     }
 }
