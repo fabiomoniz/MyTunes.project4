@@ -36,7 +36,10 @@ public class SongModel {
             = FXCollections.observableArrayList(bllManager.getAllSp());
     private ObservableList<Song> songsInPlayList 
             = FXCollections.observableArrayList(new ArrayList<>());
+    private ArrayList<Song> tempList = new ArrayList<>();
     
+    int x = 0; // is used for the switch on the search()
+    int y = 0; // to determine and meddle with the position of a song in a playlist in the moveUp() and moveDown() 
     
     public ObservableList<songsInPlayList> getAllSp() {
         return xList;
@@ -171,7 +174,79 @@ public class SongModel {
         System.out.println(songsInPlayList);
         bllManager.removeFromPlayList(sip);
     }
+
+    void search(String search) {
+        
+        ArrayList<Song> tempList2 = new ArrayList();
+        switch (x){
+            case 0 :
+                tempList.clear();
+                tempList.addAll(sList);
+                for (Song song : sList) {
+                    if(song.getTitle().toLowerCase().equals(search) || song.getCategory().toLowerCase().equals(search) || song.getArtist().toLowerCase().equals(search))    {
+                    tempList2.add(song);
+                }
+            }
+            sList.clear();
+            sList.addAll(tempList2);
+            x = 1;
+            break;
             
+            case 1 :
+            sList.clear();
+            sList.addAll(tempList);
+            x= 0;
+            break;
+            
+            /*default:
+            System.out.println("eat adick");
+            break;*/
+        }
+        
+    }
+
+    void moveUp(PlayList selectedPlayList, Song selectedSong) {
+        ObservableList<Song> dick = selectedPlayList.getPlayListSongs();
+        int a = selectedPlayList.getPlayListSongs().indexOf(selectedSong);
+        for (Song song : dick) {
+            if(a == 0)
+                break;
+            if(y == a) {
+                Song tempSong = dick.get(y-1);
+                dick.set(y-1, song);
+                dick.set(y, tempSong); 
+                //selectedPlayList.getPlayListSongs().setAll(dick);
+                break;
+            }
+            else {
+               y++; 
+            }
+                
+        }
+        y = 0;
+    }
+    
+    void moveDown(PlayList selectedPlayList, Song selectedSong) {
+        ObservableList<Song> dick = selectedPlayList.getPlayListSongs();
+        int a = selectedPlayList.getPlayListSongs().indexOf(selectedSong);
+        for (Song song : dick) {
+            if(a == dick.size()-1)
+                break;
+            if(y == a) {
+                Song tempSong = dick.get(y+1);
+                dick.set(y+1, song);
+                dick.set(y, tempSong); 
+                //selectedPlayList.getPlayListSongs().setAll(dick);
+                break;
+            }
+            else {
+               y++; 
+            }
+                
+        }
+        y = 0;
+    }
+
 }
 
 

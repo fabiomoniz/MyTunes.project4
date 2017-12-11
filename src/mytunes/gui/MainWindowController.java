@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -67,6 +68,8 @@ public class MainWindowController implements Initializable {
     private TableColumn<PlayList, Float> columnTotalTime;
     @FXML
     private ListView<Song> listview;
+    @FXML
+    private TextField txtSearch;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,21 +82,17 @@ public class MainWindowController implements Initializable {
         columnTime.setCellValueFactory(
             new PropertyValueFactory("time"));
         
+        playList.setItems(model.getPlayList());
         songsList.setItems(model.getSongList());
         
-        columnNumberSongs.setCellValueFactory(
-            new PropertyValueFactory("numberSongs"));
+        model.setAllSongsIntoPlayLists();
+       
         columnPlayListName.setCellValueFactory(
             new PropertyValueFactory("playListnName"));
-        columnTotalTime.setCellValueFactory(
-            new PropertyValueFactory("totalTime"));
-        
-        playList.setItems(model.getPlayList());
         
         System.out.println(model.getSongList());
         System.out.println(model.getPlayList());
         System.out.println(model.getAllSp());
-        model.setAllSongsIntoPlayLists();
     }
     
 
@@ -220,6 +219,8 @@ public class MainWindowController implements Initializable {
         
         
         listview.setItems(selectedPlayList.getPlayListSongs());
+      //  columnTotalTime.setCellValueFactory(value);
+        
     }
 
     @FXML
@@ -246,5 +247,27 @@ public class MainWindowController implements Initializable {
         System.out.println(selectedPlayList);
         listview.setItems(selectedPlayList.getPlayListSongs());
         
+    }
+
+    @FXML
+    private void clickSearch(ActionEvent event) {
+        String search = txtSearch.getText().toLowerCase();
+        model.search(search);
+    }
+
+    @FXML
+    private void clickUp(ActionEvent event) {
+        Song selectedSong = listview.getSelectionModel().getSelectedItem();
+        PlayList selectedPlayList = playList.getSelectionModel().getSelectedItem();
+        model.moveUp(selectedPlayList, selectedSong);
+        listview.setItems(selectedPlayList.getPlayListSongs());
+    }
+
+    @FXML
+    private void clickDown(ActionEvent event) {
+        Song selectedSong = listview.getSelectionModel().getSelectedItem();
+        PlayList selectedPlayList = playList.getSelectionModel().getSelectedItem();
+        model.moveDown(selectedPlayList, selectedSong);
+        listview.setItems(selectedPlayList.getPlayListSongs());
     }
 }
