@@ -72,6 +72,11 @@ public class SongModel {
     {
         bllManager.remove(selectedSong);
         sList.remove(selectedSong);        
+        for (PlayList pl : pList) {
+            if(pl.getPlayListSongs().contains(selectedSong))
+                pl.remove(selectedSong);
+        }
+        xList.remove(selectedSong);
     }
 
     public void remove(PlayList selectedPlayList) {
