@@ -85,5 +85,8 @@ public class PlayList {
         playListSongs.add(selectedSong);
     }
     
+    public void remove(Song selectedSong) {
+        playListSongs.remove(selectedSong);
+    }
     
 }

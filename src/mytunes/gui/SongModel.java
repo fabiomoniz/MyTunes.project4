@@ -162,6 +162,7 @@ public class SongModel {
             songsInPlayList.remove(s);
         }
         xList.remove(sip);
+        selectedPlayList.remove(selectedSong);
         System.out.println(songsInPlayList);
         bllManager.removeFromPlayList(sip);
     }

@@ -242,7 +242,7 @@ public class MainWindowController implements Initializable {
         
         model.remove(selectedPlayList, selectedSong);
       
-
+        
         System.out.println(selectedPlayList);
         listview.setItems(selectedPlayList.getPlayListSongs());
         
