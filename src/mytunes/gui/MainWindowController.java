@@ -61,15 +61,13 @@ public class MainWindowController implements Initializable {
     @FXML
     private TableColumn<Song, Float> columnTime;
     @FXML
-    private TableColumn<PlayList, Integer> columnNumberSongs;
-    @FXML
     private TableColumn<PlayList, String> columnPlayListName;
-    @FXML
-    private TableColumn<PlayList, Float> columnTotalTime;
     @FXML
     private ListView<Song> listview;
     @FXML
     private TextField txtSearch;
+    @FXML
+    private Label txtSongPlaying;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -225,6 +223,14 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void songPlay(javafx.event.ActionEvent event) {
+        PlayList selectedPlayList = playList.getSelectionModel().getSelectedItem();
+        Song selectedSong = listview.getSelectionModel().getSelectedItem();
+        if(selectedSong != null)    {
+           model.play(selectedSong, selectedPlayList);
+        }
+        else    {
+           model.play(selectedPlayList);
+        }
     }
 
     @FXML
@@ -269,5 +275,9 @@ public class MainWindowController implements Initializable {
         PlayList selectedPlayList = playList.getSelectionModel().getSelectedItem();
         model.moveDown(selectedPlayList, selectedSong);
         listview.setItems(selectedPlayList.getPlayListSongs());
+    }
+
+    @FXML
+    private void clickStop(ActionEvent event) {
     }
 }

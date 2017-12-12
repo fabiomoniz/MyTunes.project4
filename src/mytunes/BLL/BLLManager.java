@@ -5,10 +5,13 @@
  */
 package mytunes.BLL;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import mytunes.BE.PlayList;
 import mytunes.BE.Song;
 import mytunes.BE.songsInPlayList;
@@ -23,8 +26,10 @@ public class BLLManager {
     private ObservableList<Song> songs = FXCollections.observableArrayList(new ArrayList<>());
     private ObservableList<PlayList> playLists = FXCollections.observableArrayList(new ArrayList<>());
     private ObservableList<Song> songsInPlayList = FXCollections.observableArrayList(new ArrayList<>());
+    private int x = 0; //for the play() to make it pause and play
     
     DALManager DAL = new DALManager();
+    private MediaPlayer player;
     
     
     
@@ -88,6 +93,53 @@ public class BLLManager {
     public void removeFromPlayList(songsInPlayList selectedSongInPlayList) {
         DAL.remove(selectedSongInPlayList);
     }
+
+    public void play(Song selectedSong, PlayList selectedPlayList) {
+        switch(x) {
+            case 0:
+        File file = new File(selectedSong.getFilePath());
+        String filePath;
+        filePath = file.toURI().toString();
+        Media media = new Media(filePath);
+        player = new MediaPlayer(media);
+        x = 1;
+        
+            case 1:
+        player.play();
+        x = 2;
+        break;
+        
+            case 2:
+        player.pause();
+        x = 1;
+        break;
+        }
+    }
+
+    public void play(PlayList selectedPlayList) {
+       
+        switch(x) {
+            case 0:
+        Song song = (Song) selectedPlayList.getPlayListSongs().get(0);
+        File file = new File(song.getFilePath());
+        String filePath = file.toURI().toString();
+        Media media = new Media(filePath);
+        player = new MediaPlayer(media);
+        x = 1;
+        
+            case 1:
+            player.play();
+            x = 2;
+            break;
+            
+            case 2:
+            player.pause();
+            x = 1;
+            break;
+            }
+                
+    }
+
 
     
     

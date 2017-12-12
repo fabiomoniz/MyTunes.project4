@@ -60,7 +60,6 @@ public class SongtableController implements Initializable {
         {
             StringPath = filePath.getAbsolutePath();
         }
-        
         txtfieldfile.setText(StringPath);
     }
 

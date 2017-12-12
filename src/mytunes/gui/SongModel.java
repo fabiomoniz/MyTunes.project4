@@ -247,6 +247,15 @@ public class SongModel {
         y = 0;
     }
 
+    public void play(Song selectedSong, PlayList selectedPlayList) {  //Overloading play method
+        bllManager.play(selectedSong, selectedPlayList);
+    }
+
+    public void play(PlayList selectedPlayList) {
+        bllManager.play(selectedPlayList);
+    }
+
+
 }
 
 
