@@ -255,6 +255,10 @@ public class SongModel {
         bllManager.play(selectedPlayList);
     }
 
+    void stop() {
+        bllManager.stop();
+    }
+
 
 }
 

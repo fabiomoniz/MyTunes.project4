@@ -279,5 +279,6 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void clickStop(ActionEvent event) {
+        model.stop();
     }
 }

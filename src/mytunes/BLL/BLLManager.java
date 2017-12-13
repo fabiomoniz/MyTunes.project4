@@ -30,6 +30,10 @@ public class BLLManager {
     
     DALManager DAL = new DALManager();
     private MediaPlayer player;
+    private Media media;
+    String filePath;
+    String filePath2;
+    String filePath3;
     
     
     
@@ -96,23 +100,35 @@ public class BLLManager {
 
     public void play(Song selectedSong, PlayList selectedPlayList) {
         switch(x) {
-            case 0:
-        File file = new File(selectedSong.getFilePath());
-        String filePath;
-        filePath = file.toURI().toString();
-        Media media = new Media(filePath);
-        player = new MediaPlayer(media);
-        x = 1;
+            
+        case 0:
+            filePath2 = selectedSong.getFilePath();
+            if(filePath2 != filePath3) {
+            filePath3 = selectedSong.getFilePath();
+            File file = new File(selectedSong.getFilePath());
+            filePath = file.toURI().toString();
+            media = new Media(filePath);
+            player = new MediaPlayer(media);
+            player.play();
+            x = 2; 
+            break;}
+
+            else x = 1;
+            
         
-            case 1:
-        player.play();
-        x = 2;
-        break;
+        case 1:
+            
+            {
+            player.play();
+            x = 2;
+            break;
+            }
         
-            case 2:
-        player.pause();
-        x = 1;
-        break;
+        case 2:
+                
+            player.pause();
+            x = 0;
+            break;
         }
     }
 
@@ -121,23 +137,29 @@ public class BLLManager {
         switch(x) {
             case 0:
         Song song = (Song) selectedPlayList.getPlayListSongs().get(0);
-        File file = new File(song.getFilePath());
-        String filePath = file.toURI().toString();
-        Media media = new Media(filePath);
-        player = new MediaPlayer(media);
-        x = 1;
-        
-            case 1:
+            filePath2 = song.getFilePath();
+            if(filePath2 != filePath3) {
+            filePath3 = song.getFilePath();
+            File file = new File(song.getFilePath());
+            String filePath = file.toURI().toString();
+            media = new Media(filePath);
+            player = new MediaPlayer(media);
             player.play();
-            x = 2;
-            break;
-            
-            case 2:
-            player.pause();
             x = 1;
+            break;}
+            else x = 1;
+            player.play();
+            
+            case 1:
+            player.pause();
+            x = 0;
             break;
             }
                 
+    }
+
+    public void stop() {
+        player.stop();
     }
 
 
