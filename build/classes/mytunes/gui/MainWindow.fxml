@@ -47,7 +47,7 @@
       <Label fx:id="txtSongPlaying" layoutX="283.0" layoutY="17.0" prefHeight="35.0" prefWidth="149.0" text="SongName + &quot;is Playing&quot;" />
       <ImageView fitHeight="102.0" fitWidth="119.0" layoutX="97.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="710.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickSearch" text="Search" />
-      <Slider layoutX="281.0" layoutY="95.0" onDragDetected="#SongVolumeDragDetected" />
+      <Slider fx:id="volumeSlider" blockIncrement="0.1" layoutX="281.0" layoutY="95.0" />
       <Button layoutX="421.0" layoutY="64.0" mnemonicParsing="false" onAction="#clickStop" text="Stop" />
    </children>
 </AnchorPane>

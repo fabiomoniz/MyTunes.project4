@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -68,6 +71,8 @@ public class MainWindowController implements Initializable {
     private TextField txtSearch;
     @FXML
     private Label txtSongPlaying;
+    @FXML
+    private Slider volumeSlider;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -91,13 +96,16 @@ public class MainWindowController implements Initializable {
         System.out.println(model.getSongList());
         System.out.println(model.getPlayList());
         System.out.println(model.getAllSp());
+      
+        volumeSlider.setValue(100); //Magic number = max value of the slider, since the music player starts off at max volume.
+        volumeSlider.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                model.setVolume(volumeSlider.getValue() / 100);
+            }
+        });
     }
     
-
-
-    @FXML
-    private void SongVolumeDragDetected(MouseEvent event) {
-    }
 
     @FXML
     private void updateList(MouseEvent event) {
@@ -239,6 +247,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void songNext(javafx.event.ActionEvent event) {
+        
     }
 
     @FXML

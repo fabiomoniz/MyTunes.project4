@@ -259,6 +259,13 @@ public class SongModel {
         bllManager.stop();
     }
 
+    void setVolume(double value) {
+        bllManager.setVolume(value);
+    }
+
+
+
+   
 
 }
 

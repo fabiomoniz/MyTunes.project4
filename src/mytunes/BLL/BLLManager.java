@@ -29,14 +29,12 @@ public class BLLManager {
     private int x = 0; //for the play() to make it pause and play
     
     DALManager DAL = new DALManager();
-    private MediaPlayer player;
-    private Media media;
-    String filePath;
+
     String filePath2;
     String filePath3;
-    
-    
-    
+    String filePath;
+    MediaPlayer player;
+    Media media;
     
     public List<Song> getAllSongs(){
         return DAL.getAllSongs();
@@ -160,11 +158,13 @@ public class BLLManager {
 
     public void stop() {
         player.stop();
+        x = 0;
     }
 
-
-    
-    
+    public void setVolume(double value) {
+        if(player != null)
+            player.setVolume(value);
+    }
     
     
     
