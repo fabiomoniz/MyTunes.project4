@@ -113,9 +113,8 @@ public class BLLManager {
             x = 2; 
             break;}
 
-            else if(player.getCurrentTime() == player.getStopTime()) {
-                filePath3 = null;
-                x = 0; }
+            else if(player.getMedia().getDuration() == player.getOnEndOfMedia())
+                x = 3;
                 
             else x = 1;
             
@@ -133,6 +132,10 @@ public class BLLManager {
             player.pause();
             x = 0;
             break;
+         
+        case 3:
+            player.stop();
+            x = 1;
         }
     }
 
