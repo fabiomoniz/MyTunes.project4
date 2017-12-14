@@ -226,7 +226,7 @@ public class SongModel {
         y = 0;
     }
     
-    void moveDown(PlayList selectedPlayList, Song selectedSong) {
+    public void moveDown(PlayList selectedPlayList, Song selectedSong) {
         ObservableList<Song> dick = selectedPlayList.getPlayListSongs();
         int a = selectedPlayList.getPlayListSongs().indexOf(selectedSong);
         for (Song song : dick) {
@@ -255,12 +255,16 @@ public class SongModel {
         bllManager.play(selectedPlayList);
     }
 
-    void stop() {
+    public void stop() {
         bllManager.stop();
     }
 
-    void setVolume(double value) {
+    public void setVolume(double value) {
         bllManager.setVolume(value);
+    }
+
+    public String getCurrentSong() {
+        return bllManager.getCurrentSong();
     }
 
 

@@ -235,19 +235,32 @@ public class MainWindowController implements Initializable {
         Song selectedSong = listview.getSelectionModel().getSelectedItem();
         if(selectedSong != null)    {
            model.play(selectedSong, selectedPlayList);
+           setLabel();
         }
         else    {
            model.play(selectedPlayList);
+           setLabel();
         }
     }
 
     @FXML
     private void songLast(javafx.event.ActionEvent event) {
+        listview.getSelectionModel().selectPrevious();
+        PlayList selectedPlayList = playList.getSelectionModel().getSelectedItem();
+        Song selectedSong = listview.getSelectionModel().getSelectedItem();
+        model.stop();
+        model.play(selectedSong, selectedPlayList);
+        setLabel();
     }
 
     @FXML
     private void songNext(javafx.event.ActionEvent event) {
-        
+        listview.getSelectionModel().selectNext();
+        PlayList selectedPlayList = playList.getSelectionModel().getSelectedItem();
+        Song selectedSong = listview.getSelectionModel().getSelectedItem();
+        model.stop();
+        model.play(selectedSong, selectedPlayList);
+        setLabel();
     }
 
     @FXML
@@ -289,5 +302,9 @@ public class MainWindowController implements Initializable {
     @FXML
     private void clickStop(ActionEvent event) {
         model.stop();
+    }
+    
+    private void setLabel() {
+        txtSongPlaying.setText(model.getCurrentSong());
     }
 }

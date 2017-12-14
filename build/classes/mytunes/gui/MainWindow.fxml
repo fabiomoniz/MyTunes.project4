@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.MainWindowController">
@@ -44,10 +43,10 @@
       <Button layoutX="329.0" layoutY="64.0" mnemonicParsing="false" onAction="#songPlay" text="Play" />
       <Button layoutX="287.0" layoutY="64.0" mnemonicParsing="false" onAction="#songLast" text="Last" />
       <Button layoutX="372.0" layoutY="64.0" mnemonicParsing="false" onAction="#songNext" text="Next" />
-      <Label fx:id="txtSongPlaying" layoutX="283.0" layoutY="17.0" prefHeight="35.0" prefWidth="149.0" text="SongName + &quot;is Playing&quot;" />
-      <ImageView fitHeight="102.0" fitWidth="119.0" layoutX="97.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="txtSongPlaying" layoutX="283.0" layoutY="17.0" prefHeight="35.0" prefWidth="219.0" />
       <Button layoutX="710.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickSearch" text="Search" />
       <Slider fx:id="volumeSlider" blockIncrement="0.1" layoutX="281.0" layoutY="95.0" />
       <Button layoutX="421.0" layoutY="64.0" mnemonicParsing="false" onAction="#clickStop" text="Stop" />
+      <Label layoutX="189.0" layoutY="26.0" text="Currently playing:" />
    </children>
 </AnchorPane>

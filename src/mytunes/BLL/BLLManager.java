@@ -35,6 +35,7 @@ public class BLLManager {
     String filePath;
     MediaPlayer player;
     Media media;
+    Song song;
     
     public List<Song> getAllSongs(){
         return DAL.getAllSongs();
@@ -100,10 +101,11 @@ public class BLLManager {
         switch(x) {
             
         case 0:
-            filePath2 = selectedSong.getFilePath();
+            song = selectedSong;
+            filePath2 = song.getFilePath();
             if(filePath2 != filePath3) {
-            filePath3 = selectedSong.getFilePath();
-            File file = new File(selectedSong.getFilePath());
+            filePath3 = song.getFilePath();
+            File file = new File(song.getFilePath());
             filePath = file.toURI().toString();
             media = new Media(filePath);
             player = new MediaPlayer(media);
@@ -134,7 +136,7 @@ public class BLLManager {
        
         switch(x) {
             case 0:
-        Song song = (Song) selectedPlayList.getPlayListSongs().get(0);
+            song = (Song) selectedPlayList.getPlayListSongs().get(0);
             filePath2 = song.getFilePath();
             if(filePath2 != filePath3) {
             filePath3 = song.getFilePath();
@@ -164,6 +166,13 @@ public class BLLManager {
     public void setVolume(double value) {
         if(player != null)
             player.setVolume(value);
+    }
+
+    public String getCurrentSong() {
+        String labelText = null;
+        if(song != null)
+            labelText = song.getTitle();
+        return labelText;
     }
     
     
