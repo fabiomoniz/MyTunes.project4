@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
@@ -73,6 +74,8 @@ public class MainWindowController implements Initializable {
     private Label txtSongPlaying;
     @FXML
     private Slider volumeSlider;
+    @FXML
+    private Button playButton;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -239,25 +242,24 @@ public class MainWindowController implements Initializable {
         PlayList selectedPlayList = playList.getSelectionModel().getSelectedItem();
         Song selectedSong = listview.getSelectionModel().getSelectedItem();
         int songIndex = listview.getSelectionModel().getSelectedIndex();
+        
         if(selectedSong != null)    {
            model.play(selectedSong, selectedPlayList);
+           playButton.setText(model.getPlayState());
            setLabel();
            model.getPlayer().setOnEndOfMedia(new Runnable() {
                @Override
                public void run() {
-                   listview.getSelectionModel().select(songIndex+1);
-                   
+                   listview.getSelectionModel().selectNext();
                    model.getPlayer().stop();
                    model.setXto0();
                    playSongs();
-                   setLabel();
                }
            });
         }
         else    {
-           model.play(selectedPlayList);
            listview.getSelectionModel().select(0);
-           setLabel();
+           playSongs();
         }
     }
 
@@ -267,7 +269,7 @@ public class MainWindowController implements Initializable {
         PlayList selectedPlayList = playList.getSelectionModel().getSelectedItem();
         Song selectedSong = listview.getSelectionModel().getSelectedItem();
         model.stop();
-        model.play(selectedSong, selectedPlayList);
+        playSongs();
         setLabel();
     }
 
@@ -277,7 +279,7 @@ public class MainWindowController implements Initializable {
         PlayList selectedPlayList = playList.getSelectionModel().getSelectedItem();
         Song selectedSong = listview.getSelectionModel().getSelectedItem();
         model.stop();
-        model.play(selectedSong, selectedPlayList);
+        playSongs();
         setLabel();
     }
 

@@ -277,6 +277,10 @@ public class SongModel {
         bllManager.setXto0();
     }
 
+    String getPlayState() {
+        return bllManager.getPlayState();
+    }
+
 
 
    

@@ -186,7 +186,22 @@ public class BLLManager {
         x = 0;
     }
     
-    
-    
+//    public double songLength() {
+//        player.get
+//    }
+//    
+//    
+//    
+
+    public String getPlayState() {
+            String playState = "Pause";
+        switch (x) {
+            case 0:
+                playState = "Pause";
+            case 1:
+                playState = "Play";
+        }
+        return playState;
+    }
 }
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.MainWindowController">
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.MainWindowController">
    <children>
       <TableView fx:id="playList" layoutX="30.0" layoutY="135.0" onMouseClicked="#updateList" prefHeight="377.0" prefWidth="219.0">
         <columns>
@@ -41,7 +41,7 @@
       <Button layoutX="357.0" layoutY="521.0" mnemonicParsing="false" onAction="#DeleteSongFromPlayList" text="Delete" />
       <Button layoutX="413.0" layoutY="135.0" mnemonicParsing="false" onAction="#clickedInsert" text="Insert" />
       <Button fx:id="playButton" layoutX="329.0" layoutY="64.0" mnemonicParsing="false" onAction="#songPlay" text="Play" />
-      <Button layoutX="287.0" layoutY="64.0" mnemonicParsing="false" onAction="#songLast" text="Last" />
+      <Button layoutX="287.0" layoutY="64.0" mnemonicParsing="false" onAction="#songLast" text="Prev" />
       <Button layoutX="372.0" layoutY="64.0" mnemonicParsing="false" onAction="#songNext" text="Next" />
       <Label fx:id="txtSongPlaying" layoutX="283.0" layoutY="17.0" prefHeight="35.0" prefWidth="219.0" />
       <Button layoutX="710.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickSearch" text="Search" />
