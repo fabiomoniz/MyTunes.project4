@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mytunes.BE.PlayList;
@@ -265,6 +266,15 @@ public class SongModel {
 
     public String getCurrentSong() {
         return bllManager.getCurrentSong();
+    }
+
+    public MediaPlayer getPlayer() {
+        MediaPlayer player = bllManager.getPlayer();
+        return player;
+    }
+
+    void setXto0() {
+        bllManager.setXto0();
     }
 
 

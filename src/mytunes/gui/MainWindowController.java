@@ -231,14 +231,32 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void songPlay(javafx.event.ActionEvent event) {
+        playSongs();
+
+    }
+        
+    private void playSongs() {
         PlayList selectedPlayList = playList.getSelectionModel().getSelectedItem();
         Song selectedSong = listview.getSelectionModel().getSelectedItem();
+        int songIndex = listview.getSelectionModel().getSelectedIndex();
         if(selectedSong != null)    {
            model.play(selectedSong, selectedPlayList);
            setLabel();
+           model.getPlayer().setOnEndOfMedia(new Runnable() {
+               @Override
+               public void run() {
+                   listview.getSelectionModel().select(songIndex+1);
+                   
+                   model.getPlayer().stop();
+                   model.setXto0();
+                   playSongs();
+                   setLabel();
+               }
+           });
         }
         else    {
            model.play(selectedPlayList);
+           listview.getSelectionModel().select(0);
            setLabel();
         }
     }

@@ -147,8 +147,11 @@ public class BLLManager {
             player.play();
             x = 1;
             break;}
-            else x = 1;
+            else {
             player.play();
+            x = 1;}
+
+            
             
             case 1:
             player.pause();
@@ -173,6 +176,14 @@ public class BLLManager {
         if(song != null)
             labelText = song.getTitle();
         return labelText;
+    }
+
+    public MediaPlayer getPlayer() {
+        return player;
+    }
+
+    public void setXto0() {
+        x = 0;
     }
     
     

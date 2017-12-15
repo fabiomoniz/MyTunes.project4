@@ -40,7 +40,7 @@
       <Button layoutX="300.0" layoutY="521.0" mnemonicParsing="false" onAction="#clickDown" text="Down" />
       <Button layoutX="357.0" layoutY="521.0" mnemonicParsing="false" onAction="#DeleteSongFromPlayList" text="Delete" />
       <Button layoutX="413.0" layoutY="135.0" mnemonicParsing="false" onAction="#clickedInsert" text="Insert" />
-      <Button layoutX="329.0" layoutY="64.0" mnemonicParsing="false" onAction="#songPlay" text="Play" />
+      <Button fx:id="playButton" layoutX="329.0" layoutY="64.0" mnemonicParsing="false" onAction="#songPlay" text="Play" />
       <Button layoutX="287.0" layoutY="64.0" mnemonicParsing="false" onAction="#songLast" text="Last" />
       <Button layoutX="372.0" layoutY="64.0" mnemonicParsing="false" onAction="#songNext" text="Next" />
       <Label fx:id="txtSongPlaying" layoutX="283.0" layoutY="17.0" prefHeight="35.0" prefWidth="219.0" />
