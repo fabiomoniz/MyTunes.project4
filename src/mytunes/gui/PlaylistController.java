@@ -37,7 +37,7 @@ public class PlaylistController implements Initializable {
     }    
 
     @FXML
-    private void buttonsave(ActionEvent event) {
+    private void buttonsave(ActionEvent event) { //saves a new playlist with a name
         PlayList pl = new PlayList();
         
         pl.setPlayListnName(txtfieldname.getText());
@@ -48,11 +48,11 @@ public class PlaylistController implements Initializable {
     }
 
     @FXML
-    private void butotncancel(ActionEvent event) {
+    private void butotncancel(ActionEvent event) { //closes the window
         ((Node)event.getSource()).getScene().getWindow().hide();
     }
     
-    public void setModel(SongModel model) {
+    public void setModel(SongModel model) { //sets the model to the SongModel from MWC
         this.model = model;
     }
 }

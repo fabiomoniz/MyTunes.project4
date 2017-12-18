@@ -42,12 +42,12 @@ public class EditSongController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        comboCategory.getItems().setAll("Classical","Jazz","Modern","Pop","R&B","ReligiousRock");
+        comboCategory.getItems().setAll("Classical","Jazz","Modern","Pop","R&B","ReligiousRock"); //sets the categories into the combobox
         // TODO
     }    
 
     @FXML
-    private void buttonchoose(ActionEvent event) {
+    private void buttonchoose(ActionEvent event) { //opens a pathfinder, to find a file
         String StringPath = null;
         
         final FileChooser fileChooser = new FileChooser();
@@ -62,7 +62,7 @@ public class EditSongController implements Initializable {
     }
 
     @FXML
-    private void buttonsave(ActionEvent event) {
+    private void buttonsave(ActionEvent event) { //saves a song with the set variables, to the DB
         
         selectedSong.setTitle(txtfieldtitle.getText());
         selectedSong.setArtist(txtfieldartist.getText());
@@ -76,19 +76,15 @@ public class EditSongController implements Initializable {
     }
 
     @FXML
-    private void bouttoncancel(ActionEvent event) {
+    private void bouttoncancel(ActionEvent event) { //closes the window
         ((Node)event.getSource()).getScene().getWindow().hide();
     }
-
-    @FXML
-    private void musiccategory(ActionEvent event) {
-    }
     
-    public void setModel(SongModel model) {
+    public void setModel(SongModel model) { //sets the model to the SongModel used in the mainwindowcontroller
         this.model = model;
     }
     
-    public void setSong(Song selectedSong){
+    public void setSong(Song selectedSong){ //sets the text and values in each textfield
         this.selectedSong = selectedSong; 
         txtfieldtitle.setText(selectedSong.getTitle());
         txtfieldartist.setText(selectedSong.getArtist());

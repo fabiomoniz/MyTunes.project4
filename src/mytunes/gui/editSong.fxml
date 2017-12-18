@@ -6,8 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="337.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="mytunes.gui.EditSongController">
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="337.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.EditSongController">
    <children>
       <Label layoutX="76.0" layoutY="39.0" text="Title:" />
       <Label layoutX="71.0" layoutY="79.0" text="Artist:" />
@@ -21,6 +20,6 @@
       <Button layoutX="268.0" layoutY="206.0" mnemonicParsing="false" onAction="#buttonchoose" text="Choose" />
       <Button layoutX="283.0" layoutY="258.0" mnemonicParsing="false" onAction="#buttonsave" text="Save" />
       <Button layoutX="216.0" layoutY="258.0" mnemonicParsing="false" onAction="#bouttoncancel" text="Cancel" />
-      <ComboBox fx:id="comboCategory" layoutX="109.0" layoutY="120.0" onAction="#musiccategory" prefWidth="150.0" />
+      <ComboBox fx:id="comboCategory" layoutX="109.0" layoutY="120.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

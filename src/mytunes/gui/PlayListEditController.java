@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import mytunes.BE.PlayList;
-import mytunes.BE.Song;
 
 
 
@@ -37,13 +36,13 @@ public class PlayListEditController implements Initializable {
     }    
     
     
-    public void setModel(SongModel model) {
+    public void setModel(SongModel model) { //sets the model to the SongModel from the MWC
     this.model = model;
   
     }
 
     @FXML
-    private void buttonsave(ActionEvent event) {
+    private void buttonsave(ActionEvent event) { //saves the PlayList with the new variable
         
         selectedPlayList.setPlayListnName(txtfieldname.getText());
         
@@ -53,11 +52,11 @@ public class PlayListEditController implements Initializable {
     }
 
     @FXML
-    private void butotncancel(ActionEvent event) {
+    private void butotncancel(ActionEvent event) { //closes the window
         ((Node)event.getSource()).getScene().getWindow().hide();
     }
  
- public void setPlayList(PlayList selectedPlayList){
+ public void setPlayList(PlayList selectedPlayList){ //sets the text in the textfield
         this.selectedPlayList = selectedPlayList;
         txtfieldname.setText(selectedPlayList.getPlayListnName());
 

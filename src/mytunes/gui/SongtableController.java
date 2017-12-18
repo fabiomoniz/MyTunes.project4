@@ -50,7 +50,7 @@ public class SongtableController implements Initializable {
     }    
 
     @FXML
-    private void buttonchoose(ActionEvent event) {
+    private void buttonchoose(ActionEvent event) { //opens a pathfinder to look for a file
         String StringPath = null;
         
         final FileChooser fileChooser = new FileChooser();
@@ -64,7 +64,7 @@ public class SongtableController implements Initializable {
     }
 
     @FXML
-    private void buttonsave(ActionEvent event) {
+    private void buttonsave(ActionEvent event) { //saves a new song with the set variables
         Song song = new Song();
         
         song.setTitle(txtfieldtitle.getText());
@@ -79,15 +79,11 @@ public class SongtableController implements Initializable {
     }
 
     @FXML
-    private void bouttoncancel(ActionEvent event) {
+    private void bouttoncancel(ActionEvent event) { //closes the window
         ((Node)event.getSource()).getScene().getWindow().hide();
     }
 
-    @FXML
-    private void musiccategory(ActionEvent event) {
-    }
-
-    public void setModel(SongModel model) {
+    public void setModel(SongModel model) { //sets the model to the SongModel from MWC
         this.model = model;
     }
     

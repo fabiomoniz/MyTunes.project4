@@ -5,17 +5,10 @@
  */
 package mytunes.gui;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import mytunes.BE.PlayList;
 import mytunes.BE.Song;
 import mytunes.BE.songsInPlayList;
@@ -56,23 +49,23 @@ public class SongModel {
         return pList;
     }
     
-    public void loadAll()
+    public void loadAll() //loads all the songs into the songList
     {
         sList.clear();
         sList.addAll(bllManager.getAllSongs());
     }
     
-    public void add(Song song) {
+    public void add(Song song) { //adds new song to DB and songList
         bllManager.add(song);
         sList.add(song);
     }
     
-    public void add(PlayList playList){
+    public void add(PlayList playList){ //adds new PlayList to DB and PlayList List
         bllManager.add(playList);
         pList.add(playList);
     }
     
-    public void remove(Song selectedSong)
+    public void remove(Song selectedSong) //deletes song from DB and SongList, and PlayList
     {
         bllManager.remove(selectedSong);
         sList.remove(selectedSong);        
@@ -83,13 +76,13 @@ public class SongModel {
         xList.remove(selectedSong);
     }
 
-    public void remove(PlayList selectedPlayList) {
+    public void remove(PlayList selectedPlayList) { //deletes PlayList from the PlayList list and DB
         pList.remove(selectedPlayList); 
         bllManager.remove(selectedPlayList);
         
     }
 
-    public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) {
+    public void addSongToPlayList(Song selectedSong, PlayList selectedPlayList) { //add song from SongList to PlayList
         selectedPlayList.add(selectedSong);
         songsInPlayList.clear();
         songsInPlayList.add(selectedSong);
@@ -101,11 +94,11 @@ public class SongModel {
         newSong.setPlayListId(selectedPlayList.getId());
         newSong.setSongId(selectedSong.getId());
         xList.add(newSong);
-        bllManager.addSongToPlayList(selectedSong,selectedPlayList);
+        bllManager.addSongToPlayList(selectedSong,selectedPlayList); //adds reference to the DB
     }
 
     
-    public void setAllSongsIntoPlayLists(){
+    public void setAllSongsIntoPlayLists(){ //sets songs into playlist, based on ID's and Id references in DB
         
         for (songsInPlayList xl : xList) {
             
@@ -129,18 +122,18 @@ public class SongModel {
         
     }
     
-    public void updateSong(Song song){
+    public void updateSong(Song song){ //updates... song :)
         
         bllManager.updateSong(song);
         
     }
 
-    public void updatePlayList(PlayList playlist) {
+    public void updatePlayList(PlayList playlist) { //pllllllllllllllaylist
         
         bllManager.updatePlayList(playlist);
     }
 
-    public void remove(PlayList selectedPlayList, Song selectedSong) {
+    public void remove(PlayList selectedPlayList, Song selectedSong) { //removes song from playlist, including the DB reference
         songsInPlayList sip = null;
         Song s = null;
         
@@ -152,11 +145,6 @@ public class SongModel {
             }
             System.out.println(sp);
         }
-        
-//        if (sip != null)
-//        {
-//            xList.remove(sip);
-//        }
         
         for (Song sp : sList) {
             if (sp.getId() == selectedSong.getId())
@@ -176,7 +164,7 @@ public class SongModel {
         bllManager.removeFromPlayList(sip);
     }
 
-    void search(String search) {
+    void search(String search) { //searches for a song in the songlist has a variable equal to the search term
         
         ArrayList<Song> tempList2 = new ArrayList();
         switch (x){
@@ -198,15 +186,11 @@ public class SongModel {
             sList.addAll(tempList);
             x= 0;
             break;
-            
-            /*default:
-            System.out.println("eat adick");
-            break;*/
         }
         
     }
 
-    void moveUp(PlayList selectedPlayList, Song selectedSong) {
+    void moveUp(PlayList selectedPlayList, Song selectedSong) { //moves song up in the list index
         ObservableList<Song> dick = selectedPlayList.getPlayListSongs();
         int a = selectedPlayList.getPlayListSongs().indexOf(selectedSong);
         for (Song song : dick) {
@@ -215,8 +199,7 @@ public class SongModel {
             if(y == a) {
                 Song tempSong = dick.get(y-1);
                 dick.set(y-1, song);
-                dick.set(y, tempSong); 
-                //selectedPlayList.getPlayListSongs().setAll(dick);
+                dick.set(y, tempSong);
                 break;
             }
             else {
@@ -227,7 +210,7 @@ public class SongModel {
         y = 0;
     }
     
-    public void moveDown(PlayList selectedPlayList, Song selectedSong) {
+    public void moveDown(PlayList selectedPlayList, Song selectedSong) { //moves song down in the list index
         ObservableList<Song> dick = selectedPlayList.getPlayListSongs();
         int a = selectedPlayList.getPlayListSongs().indexOf(selectedSong);
         for (Song song : dick) {
@@ -237,7 +220,6 @@ public class SongModel {
                 Song tempSong = dick.get(y+1);
                 dick.set(y+1, song);
                 dick.set(y, tempSong); 
-                //selectedPlayList.getPlayListSongs().setAll(dick);
                 break;
             }
             else {
@@ -252,9 +234,9 @@ public class SongModel {
         bllManager.play(selectedSong, selectedPlayList);
     }
 
-    public void play(PlayList selectedPlayList) {
-        bllManager.play(selectedPlayList);
-    }
+//    public void play(PlayList selectedPlayList) { //plays 
+//        bllManager.play(selectedPlayList);
+//    }
 
     public void stop() {
         bllManager.stop();
