@@ -17,7 +17,7 @@ public class ConnectionManager {
     
     private SQLServerDataSource ds = new SQLServerDataSource();
     
-    public ConnectionManager() {
+    public ConnectionManager() { //doo bee doo
         ds.setDatabaseName("CS2017_10_MYTUNES");
         ds.setUser("CS2017B_10_java");
         ds.setPassword("javajava");

@@ -26,7 +26,7 @@ public class DALManager {
     
     ConnectionManager cm = new ConnectionManager();
     
-    public List<Song> getAllSongs() {
+    public List<Song> getAllSongs() { //Get the songs from the database to the programe
         List<Song> allSongs
                 = new ArrayList();
 
@@ -53,7 +53,7 @@ public class DALManager {
         return allSongs;
     }
     
-    public List<PlayList> getAllPlayList() {
+    public List<PlayList> getAllPlayList() { //Get playlist form the database
         List<PlayList> allPlayLists
                 = new ArrayList();
 
@@ -76,7 +76,7 @@ public class DALManager {
         return allPlayLists;
     }
     
-    public void addSong(Song song) {
+    public void addSong(Song song) { // Add songs from the programe to thte database
         try (Connection con = cm.getConnection()) {
             String sql
                     = "INSERT INTO SongTable"
@@ -107,7 +107,7 @@ public class DALManager {
         }
     }
     
-    public void addPlayList(PlayList playList) {
+    public void addPlayList(PlayList playList) { //Add playlist from the programe to the database
         try (Connection con = cm.getConnection()) {
             String sql
                     = "INSERT INTO PlayList"
@@ -179,7 +179,7 @@ public class DALManager {
                     Level.SEVERE, null, ex);
         }}
 
-    public void addSongToPlayList(PlayList selectedPlayList, Song selectedSong) {
+    public void addSongToPlayList(PlayList selectedPlayList, Song selectedSong) { //Add reference for songs in playlist
         try (Connection con = cm.getConnection()) {
             String sql
                     = "INSERT INTO songsInPlayList"
@@ -203,7 +203,7 @@ public class DALManager {
         }
     }
     
-    public List<songsInPlayList> getAllSp() {
+    public List<songsInPlayList> getAllSp() { //get all songs in playlists, based on the references
         List<songsInPlayList> allSongs
                 = new ArrayList();
 
@@ -226,7 +226,7 @@ public class DALManager {
         return allSongs;
     }
 
-    public void updateSong(Song song) {
+    public void updateSong(Song song) { 
              try (Connection con = cm.getConnection()) {
             String sql
                     = "UPDATE SongTable SET "
@@ -285,7 +285,7 @@ public class DALManager {
        
     }
 
-    public void remove(songsInPlayList selectedSongInPlayList) {
+    public void remove(songsInPlayList selectedSongInPlayList) { //delete reference for song in playlist
         try (Connection con = cm.getConnection()) {
            
             String sql

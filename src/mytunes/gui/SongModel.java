@@ -234,11 +234,7 @@ public class SongModel {
         bllManager.play(selectedSong, selectedPlayList);
     }
 
-//    public void play(PlayList selectedPlayList) { //plays 
-//        bllManager.play(selectedPlayList);
-//    }
-
-    public void stop() {
+    public void stop() { //:)
         bllManager.stop();
     }
 
@@ -246,20 +242,20 @@ public class SongModel {
         bllManager.setVolume(value);
     }
 
-    public String getCurrentSong() {
+    public String getCurrentSong() { //reference for the currently playing label
         return bllManager.getCurrentSong();
     }
 
-    public MediaPlayer getPlayer() {
+    public MediaPlayer getPlayer() { 
         MediaPlayer player = bllManager.getPlayer();
         return player;
     }
 
-    void setXto0() {
+    void setXto0() { //sets the int X to 0 in the BLL
         bllManager.setXto0();
     }
 
-    String getPlayState() {
+    String getPlayState() { //for the playpause button
         return bllManager.getPlayState();
     }
 

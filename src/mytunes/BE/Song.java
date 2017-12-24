@@ -21,7 +21,7 @@ public class Song {
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty title = new SimpleStringProperty();    
     private final StringProperty category = new SimpleStringProperty();
-    private final FloatProperty time = new SimpleFloatProperty();
+    private final FloatProperty time = new SimpleFloatProperty(); //this is useless
     private final StringProperty filePath = new SimpleStringProperty();
     private final StringProperty artist = new SimpleStringProperty();
 

@@ -97,7 +97,7 @@ public class BLLManager {
         DAL.remove(selectedSongInPlayList);
     }
 
-    public void play(Song selectedSong, PlayList selectedPlayList) {
+    public void play(Song selectedSong, PlayList selectedPlayList) { //Play from a selected song and pause the songs
         switch(x) {
             
         case 0:
@@ -132,7 +132,7 @@ public class BLLManager {
         }
     }
 
-    public void play(PlayList selectedPlayList) {
+    public void play(PlayList selectedPlayList) { // //Play the playlist and pause the songs
        
         switch(x) {
             case 0:
@@ -161,7 +161,7 @@ public class BLLManager {
                 
     }
 
-    public void stop() {
+    public void stop() { //Stop the songs from playing
         player.stop();
         x = 0;
     }
@@ -185,13 +185,6 @@ public class BLLManager {
     public void setXto0() {
         x = 0;
     }
-    
-//    public double songLength() {
-//        player.get
-//    }
-//    
-//    
-//    
 
     public String getPlayState() {
             String playState = "Pause";
@@ -204,4 +197,3 @@ public class BLLManager {
         return playState;
     }
 }
-
