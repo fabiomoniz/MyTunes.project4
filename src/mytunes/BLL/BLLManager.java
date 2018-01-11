@@ -105,7 +105,7 @@ public class BLLManager {
             filePath2 = song.getFilePath();
             if(filePath2 != filePath3) {
             filePath3 = song.getFilePath();
-            File file = new File(song.getFilePath());
+            File file = new File(filePath3);
             filePath = file.toURI().toString();
             media = new Media(filePath);
             player = new MediaPlayer(media);
